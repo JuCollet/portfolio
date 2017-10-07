@@ -85,15 +85,52 @@
 "use strict";
 
 
-var _styles = __webpack_require__(0);
-
-var _styles2 = _interopRequireDefault(_styles);
-
 var _normalize = __webpack_require__(1);
 
 var _normalize2 = _interopRequireDefault(_normalize);
 
+var _styles = __webpack_require__(0);
+
+var _styles2 = _interopRequireDefault(_styles);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ui = {};
+
+window.addEventListener('scroll', function (e) {
+    ui.animation.requestDetection();
+});
+
+ui.animation = function () {
+
+    return {
+        request: request // Detect if any element wich request animation is visible;
+    };
+
+    function request() {}
+}();
+
+ui.utils = function () {
+
+    return {
+        isVisible: isVisible // Detect if an element is in viewport;
+    };
+
+    function isVisible(element, visibility) {
+
+        var visibilityPercentage = element.offsetHeight;
+
+        // Est-ce que l'élément 
+
+
+        if (element.getBoundingClientRect().top <= 0 || element.getBoundingClientRect().top > window.innerHeight) {}
+    }
+}();
+
+// 1. detect if a trigger is (or half, entirely) on screen.
+// 2. if it's on screen, check for siblings with animation data
+// 3. if data animation is present & element on screen, add data-animation class to element
+// 4. if data animation is present & element on off, remove data-animation class from element if it has one
 
 /***/ })
 /******/ ]);

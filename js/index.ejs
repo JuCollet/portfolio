@@ -3,8 +3,95 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles/styles.css" type="text/css">
         <title><%= htmlWebpackPlugin.options.title %></title>
     </head>
     <body>
+        <section class="project project-clear">
+          <div class="project-body">
+            <div class="project-body-title">
+              <h1>Qode</h1>
+            </div>
+            <div class="project-body-nav">
+              <ul>
+                <li class="active">Présentation</li>
+                <li>Compétences</li>
+                <li>Technologies</li>  
+              </ul>
+            </div>
+            <div class="project-body-content">
+              <ul>
+                <li>
+                  <p>Une photothèque développée grâce à React et Redux, permettant de partager facilement des images et de collaborer avec d’autres utilisateurs.</p>
+                </li>
+              </ul>
+              <div class="project-body-nav-mobile">
+                <ul><li class="active"></li><li></li><li></li></ul>
+              </div>
+              <div class="btn btn-big btn-green">Essayer</div>      
+            </div>
+          </div>
+          <div class="project-artwork">
+          </div>
+        </section>        
+        <section class="project project-dark">
+          <div class="project-body">
+            <div data-trigger="false">
+              <div class="project-body-title">
+                <h1>Qode</h1>
+              </div>
+              <div class="project-body-nav desktop-only">
+                <ul>
+                  <li class="active">Présentation</li>
+                  <li>Projet</li>
+                  <li>Code</li>
+                </ul>
+              </div>
+              <div class="project-body-content">
+                <ul>
+                  <li>
+                    <p>Une photothèque développée grâce à React et Redux, permettant de partager facilement des images et de collaborer avec d’autres utilisateurs.</p>
+                  </li>
+                </ul>
+                <div class="project-body-nav-mobile mobile-only">
+                  <ul><li class="active"></li><li></li><li></li></ul>
+                </div>
+                <div class="btn btn-big btn-green">Essayer</div>      
+              </div> 
+            </div>
+          </div>
+          <div class="project-artwork">
+            <img class="desktop-only" id="art-qode-iphone-top" src="../img/qode_iphone_mockup_1.png" data-animation="fade slide"/>
+            <img class="desktop-only" id="art-qode-iphone-bottom" src="../img/qode_iphone_mockup_2.png" data-animation="fade slide"/>
+            <img class="mobile-only" id="art-qode-pixel" src="../img/qode_pixel_mockup.png" />
+          </div>
+        </section>
+        <section class="project project-clear">
+          <div class="project-body">
+            <div class="project-body-title">
+              <h1>Qode</h1>
+            </div>
+            <div class="project-body-nav">
+              <ul>
+                <li class="active">Présentation</li>
+                <li>Compétences</li>
+                <li>Technologies</li>  
+              </ul>
+            </div>
+            <div class="project-body-content">
+              <ul>
+                <li>
+                  <p>Une photothèque développée grâce à React et Redux, permettant de partager facilement des images et de collaborer avec d’autres utilisateurs.</p>
+                </li>
+              </ul>
+              <div class="project-body-nav-mobile">
+                <ul><li class="active"></li><li></li><li></li></ul>
+              </div>
+              <div class="btn btn-big btn-green">Essayer</div>      
+            </div>
+          </div>
+          <div class="project-artwork">
+          </div>
+        </section>          
     </body>
 </html>
