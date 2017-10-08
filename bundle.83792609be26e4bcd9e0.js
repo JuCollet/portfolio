@@ -137,13 +137,17 @@ ui.animation = function () {
     // 4. if data animation is present & element on off, remove data-animation class from element if it has one    
     function _addOrRemoveAnimationClass(element, elementMustBeAdded) {
         [].forEach.call(element.parentElement.parentElement.getElementsByTagName('*'), function (el) {
-            if (el.dataset && el.dataset.animation) {
+            if (el.dataset && el.dataset.animation || el.getAttribute("data-animation")) {
+                // Added 'getAttribute' method for Safari issue;
                 el.dataset.animation.split(' ').forEach(function (animationName) {
                     if (elementMustBeAdded ? !el.classList.contains(animationName) : el.classList.contains(animationName)) {
                         elementMustBeAdded ? el.classList.add(animationName) : el.classList.remove(animationName);
                     }
                     if (animationName === 'slide') {
                         _moveUpDown(el, elementMustBeAdded);
+                    }
+                    if (animationName === 'video') {
+                        _launchVideo(el, elementMustBeAdded);
                     }
                 });
             }
@@ -155,9 +159,17 @@ ui.animation = function () {
             element.dataset.move = window.scrollY;
         }
         if (isHappening) {
-            element.style.transform = "translate(0px," + (element.dataset.move - window.scrollY) / 15 + "px)";
+            element.style.transform = "translate(0px," + (element.dataset.move - window.scrollY) / 10 + "px)";
         } else {
             element.dataset.move = undefined;
+        }
+    }
+
+    function _launchVideo(element, isHappening) {
+        if (isHappening) {
+            setTimeout(function (_) {
+                element.play();
+            }, 3000);
         }
     }
 }();
@@ -180,7 +192,7 @@ ui.utils = function () {
             visibilityOffset = 0;
         }
 
-        if (elementTopPosition <= window.innerHeight - visibilityOffset && elementTopPosition > 0 + visibilityOffset - element.offsetHeight) {
+        if (elementTopPosition <= window.innerHeight - visibilityOffset && elementTopPosition > 0 + (visibilityOffset - element.offsetHeight)) {
             return true;
         } else {
             return false;

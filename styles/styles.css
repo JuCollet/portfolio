@@ -475,6 +475,7 @@ ul {
   display: inline-block;
   border-radius: 4px;
   cursor: pointer;
+  color: white;
 }
 .btn-big {
   padding: .5em 1.5em;
@@ -494,6 +495,10 @@ ul {
   display: -ms-flexbox;
   display: flex;
   overflow: hidden;
+  height: 80vh;
+  padding: 10vh 0;
+}
+.project-tall {
   height: 130vh;
   padding: 10vh 0;
 }
@@ -512,13 +517,10 @@ ul {
   color: #202020;
 }
 .project-clear .project-body-nav li {
-  border-bottom: 1px solid #202020;
+  border-color: #202020;
 }
-.project-clear .project-body-nav-mobile ul {
-  margin-bottom: 1em;
-}
-.project-clear .project-body-nav-mobile ul li {
-  display: inline-block;
+.project-clear .project-body-nav-mobile li {
+  background-color: #202020;
 }
 .project-body {
   display: -webkit-box;
@@ -566,6 +568,9 @@ ul {
   width: .75em;
   height: .75em;
 }
+.project-body-nav-mobile ul li:last-child {
+  margin-right: initial;
+}
 .project-body-content ul p {
   font-family: 'Raleway', sans-serif;
   font-weight: 200;
@@ -573,7 +578,7 @@ ul {
   margin-bottom: 1.5em;
 }
 .project-artwork {
-  position: fixed;
+  position: relative;
   top: 0;
   right: 0;
   height: 100vh;
@@ -619,7 +624,7 @@ ul {
 #art-qode-iphone-top {
   position: absolute;
   opacity: 0;
-  bottom: 40%;
+  bottom: 30%;
   right: -5%;
   width: 75%;
   -webkit-transition: .5s linear;
@@ -628,13 +633,10 @@ ul {
 #art-qode-iphone-bottom {
   position: absolute;
   opacity: 0;
-  top: 40%;
+  top: 50%;
   width: 50%;
   -webkit-transition: 1s linear;
   transition: 1s linear;
-}
-.fade {
-  opacity: 1 !important;
 }
 #art-qode-pixel {
   margin-bottom: 1em;
@@ -642,14 +644,36 @@ ul {
 }
 @media (max-width: 1024px) {
   #art-qode-iphone-top {
-    bottom: 60%;
+    bottom: 30%;
     right: -10%;
     width: 95%;
   }
   #art-qode-iphone-bottom {
-    top: 35%;
+    top: 60%;
     width: 60%;
   }
+}
+#art-periscope-desktop {
+  position: absolute;
+  height: 80vh;
+  -webkit-transition: .75s;
+  transition: .75s;
+}
+#art-periscope-video {
+  position: relative;
+  z-index: 999;
+  border-radius: 2px;
+  top: 11vh;
+  left: 24vh;
+  height: 54.5vh;
+  width: auto;
+  -webkit-transition: .75s;
+  transition: .75s;
+  background-color: white;
+}
+#art-periscope-iphone {
+  margin-bottom: 1em;
+  width: 100%;
 }
 .project-body-nav li.active {
   opacity: 1;
@@ -657,4 +681,11 @@ ul {
 }
 .project-body-nav-mobile li.active {
   opacity: 1;
+}
+.fade {
+  opacity: 1 !important;
+}
+.slideLeft {
+  -webkit-transform: translateX(-30px);
+          transform: translateX(-30px);
 }
