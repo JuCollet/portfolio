@@ -40,6 +40,7 @@ ul {
   display: inline-block;
   border-radius: 4px;
   cursor: pointer;
+  color: white;
 }
 
 .btn-big {
@@ -62,6 +63,11 @@ ul {
 .project {
   display: flex;
   overflow: hidden;
+  height: 80vh;
+  padding: 10vh 0;
+}
+
+.project-tall {
   height: 130vh;
   padding: 10vh 0;
 }
@@ -88,16 +94,12 @@ ul {
   
   .project-body-nav {
     li {
-      border-bottom: 1px solid @veryDarkGrey;
+      border-color: @veryDarkGrey;
     }
   }
-  
   .project-body-nav-mobile {
-    ul {
-      margin-bottom: 1em;
-      li {
-        display: inline-block;
-      }
+    li {
+      background-color: @veryDarkGrey;
     }
   } // ends .project-body-nav-mobile
 } // ends .project-clear
@@ -145,6 +147,9 @@ ul {
       width: .75em;
       height: .75em;
     }
+    li:last-child {
+      margin-right: initial;
+    }
   }
 }
 
@@ -160,7 +165,7 @@ ul {
 }
 
 .project-artwork {
-  position: fixed;
+  position: relative;
   top: 0;
   right: 0;
   height: 100vh;
@@ -218,7 +223,7 @@ ul {
 #art-qode-iphone-top {
   position: absolute;
   opacity: 0;
-  bottom: 40%;
+  bottom: 30%;
   right: -5%;
   width: 75%;
   transition: .5s linear;
@@ -227,13 +232,9 @@ ul {
 #art-qode-iphone-bottom {
   position: absolute;
   opacity: 0;
-  top: 40%;
+  top: 50%;
   width: 50%;
   transition: 1s linear;
-}
-
-.fade {
-  opacity: 1 !important;
 }
 
 #art-qode-pixel {
@@ -243,15 +244,39 @@ ul {
 
 @media (max-width:@screen-md-min){
   #art-qode-iphone-top {
-    bottom: 60%;
+    bottom: 30%;
     right: -10%;
     width: 95%;
   }
   
   #art-qode-iphone-bottom {
-    top: 35%;
+    top: 60%;
     width: 60%;
   }
+}
+
+#art-periscope-desktop {
+  position: absolute;
+  top: 5vh;
+  height: 90vh;
+  transition: .75s;
+}
+
+#art-periscope-video {
+  position: relative;
+  z-index: 999;
+  border-radius: 2px;
+  top: 11vh;
+  left: 24vh;
+  height: 54.5vh;
+  width: auto;
+  transition: .75s;
+  background-color: white;  
+}
+
+#art-periscope-iphone {
+  margin-bottom: 1em;
+  width: 100%;
 }
 
 // STATES //
@@ -267,4 +292,12 @@ ul {
   li.active {
     opacity: 1;
   }
+}
+
+.fade {
+  opacity: 1 !important;
+}
+
+.slideLeft {
+  transform: translateX(-30px);
 }
