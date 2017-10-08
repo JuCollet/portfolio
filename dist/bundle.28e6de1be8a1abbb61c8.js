@@ -96,6 +96,7 @@ var _styles2 = _interopRequireDefault(_styles);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ui = {};
+var totalJourneyLength = Math.round((Date.parse("October 1, 2016") - Date.now()) / 86400000);
 
 var start = function start() {
     var triggers = ui.animation.listTriggers();
@@ -140,14 +141,17 @@ ui.animation = function () {
             if (el.dataset && el.dataset.animation || el.getAttribute("data-animation")) {
                 // Added 'getAttribute' method for Safari issue;
                 el.dataset.animation.split(' ').forEach(function (animationName) {
+                    if (animationName === 'video') {
+                        return _launchVideo(el, elementMustBeAdded);
+                    }
+                    if (animationName === 'needle') {
+                        return _updateGaugeNeedlePosition(el, elementMustBeAdded);
+                    }
                     if (elementMustBeAdded ? !el.classList.contains(animationName) : el.classList.contains(animationName)) {
                         elementMustBeAdded ? el.classList.add(animationName) : el.classList.remove(animationName);
                     }
                     if (animationName === 'slide') {
                         _moveUpDown(el, elementMustBeAdded);
-                    }
-                    if (animationName === 'video') {
-                        _launchVideo(el, elementMustBeAdded);
                     }
                 });
             }
@@ -169,7 +173,20 @@ ui.animation = function () {
         if (isHappening) {
             setTimeout(function (_) {
                 element.play();
-            }, 3000);
+            }, 1500);
+        }
+    }
+
+    function _updateGaugeNeedlePosition(el, isHappening) {
+        if (isHappening) {
+            var freshness = Math.round((Date.parse(el.dataset.date) - Date.now()) / 86400000 / totalJourneyLength * 180);
+            if (freshness - 90 < 0) {
+                freshness = Math.abs(freshness - 90) > 90 ? 90 : Math.abs(freshness - 90);
+            } else {
+                freshness = -Math.abs(freshness - 90) < -90 ? -90 : -Math.abs(freshness - 90);
+            }
+            el.parentNode.getElementsByClassName('gauge-oldness')[0].innerText = Math.abs(Math.round((Date.parse(el.dataset.date) - Date.now()) / 86400000)) + " jours";
+            el.getElementsByClassName('gauge-needle')[0].setAttribute('transform', "rotate(" + freshness + " 50 50)");
         }
     }
 }();

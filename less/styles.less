@@ -23,6 +23,7 @@ p {
 }
 
 h1 {
+  display: inline-block;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 2.75rem;
@@ -38,13 +39,13 @@ ul {
 
 .btn {
   display: inline-block;
-  border-radius: 4px;
+  border-radius: 3px;
   cursor: pointer;
   color: white;
 }
 
 .btn-big {
-  padding: .5em 1.5em;
+  padding: .6em 1.2em;
   font-size: 1em;
 }
 
@@ -54,6 +55,33 @@ ul {
 
 .btn-green:hover {
   background-color: darken(@green, 10%);
+}
+
+.freshness {
+  position: absolute;
+  display: inline-block;
+  min-width: 50px;
+  bottom: 0;
+  margin-left: 1em;
+  cursor: pointer;
+  text-align: center;
+  
+  .gauge {
+    position: relative;
+    display: block;
+    height: 25px;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  
+  .gauge-needle {
+    transition: .25s ease-in-out;
+  }
+  
+  span {
+    font-size: .75em;
+  }
 }
 
 .mobile-only {
@@ -69,7 +97,6 @@ ul {
 
 .project-tall {
   height: 130vh;
-  padding: 10vh 0;
 }
 
 .project-dark {
@@ -86,6 +113,17 @@ ul {
       background-color: #FFFFFF;
     }
   } // ends .project-body-nav-mobile
+  
+  .freshness {
+    .gauge-needle {
+      opacity: .9;
+      fill: #666 !important;
+    }
+    span {
+      opacity: .9;
+      color: #FFFFFF;
+    }
+  }
 }
 
 .project-clear {
@@ -114,6 +152,7 @@ ul {
 }
 
 .project-body-title {
+  position: relative;
   margin-bottom: 1.5em;
 }
 
@@ -172,6 +211,72 @@ ul {
   width: 60vw;
 }
 
+.quick-apps {
+  display: flex;
+  height: 300px;
+  margin: 100px 0;
+  overflow: hidden;
+
+  .project-body {
+    min-width: 400px;
+    
+    .project-body-content {
+      p {
+        margin-bottom: 1em;
+      }
+    }
+    
+    #quick-apps-left {
+      margin-right: 1em;
+    }    
+    
+    .qa-arrow {
+      height: 20px;
+      opacity: .7;
+      transition: .25s;
+      cursor: pointer;
+    }
+    
+    .qa-arrow:hover {
+      opacity: 1;
+    }
+    
+  }
+ 
+  .quick-apps-list{
+    margin-top: 30px;
+    display: flex;
+    height: 330px;
+    margin-left: 4em;
+    overflow-x: auto;
+    
+    ul {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    
+    li {
+        display: inline-block;
+        margin-right: 1.5em;
+        text-align: center;
+        
+      img {
+        width: 225px;
+        border-radius: 5px;
+      }
+      
+      span {
+        display: block;
+        margin-top: .5em;
+        font-weight: bold;
+      }
+      
+    }
+    
+  } 
+  
+}
+
 @media (max-width:@screen-md-min){
   
   .project-body {
@@ -202,9 +307,11 @@ ul {
   .project-body {
     padding-right: 10vw;
     width: 80vw;
+    text-align: center;
   }
   
   .project-body-title {
+    margin-top: 1em;
     margin-bottom: 1em;
   }  
   
@@ -214,6 +321,31 @@ ul {
     padding-left: 10vw;
     height: initial;
     width: 80vw;
+  }
+  
+  .quick-apps {
+    height: initial;
+    margin: 50px 0;
+    flex-direction: column;
+    
+    .project-body {
+      padding: 0 10vw;      
+      min-width: initial;
+      height: initial;
+    }
+    
+    .quick-apps-list {
+      height: initial;
+      padding-bottom: 1em;
+      margin-top: 1em;
+      margin-left: initial;
+      
+      li:first-child {
+        margin-left: 1.5em;
+      }
+      
+    }
+    
   }
   
 }
@@ -257,8 +389,8 @@ ul {
 
 #art-periscope-desktop {
   position: absolute;
-  top: 5vh;
-  height: 90vh;
+  top: -10vh;
+  height: 100vh;
   transition: .75s;
 }
 
@@ -266,12 +398,11 @@ ul {
   position: relative;
   z-index: 999;
   border-radius: 2px;
-  top: 11vh;
-  left: 24vh;
-  height: 54.5vh;
+  top: 4vh;
+  left: 29.5vh;
+  height: 69vh;
   width: auto;
   transition: .75s;
-  background-color: white;  
 }
 
 #art-periscope-iphone {
@@ -299,5 +430,5 @@ ul {
 }
 
 .slideLeft {
-  transform: translateX(-30px);
+  transform: translateX(-20px);
 }
