@@ -6,6 +6,7 @@ const totalJourneyLength = Math.round((Date.parse("October 1, 2016") - Date.now(
 
 const start = function(){
     const triggers = ui.animation.listTriggers();
+    ui.menu.init();
     window.addEventListener('scroll', function(e) {
         ui.animation.request(triggers);
     });
@@ -97,7 +98,57 @@ ui.animation = (function(){
     
 }());
 
-
+ui.menu = (function(){
+    
+    return {
+        navigation,
+        init
+    };
+    
+    function navigation(e){
+        const selectedLinks = e.currentTarget;
+        const selectedLinksText = selectedLinks.innerText;
+        const content = selectedLinks.parentNode.parentElement.parentElement.getElementsByClassName("project-body-content-list")[0]
+        const contentList = content.getElementsByTagName('li');
+        
+        // 1. Remove "active" class of all siblings links
+        [].forEach.call(selectedLinks.parentNode.children, el => {
+            if(el !== selectedLinks){
+                el.classList.remove('active');
+            }
+        });
+        
+        // 2. Add "active" class to selected links
+        selectedLinks.classList.add('active');
+        
+        // 3. Add opacity "0" to every li element
+        [].forEach.call(contentList, el => {
+            el.style.opacity = 0;
+            el.classList.remove('active');
+        });
+        
+        // 4. Add "active" class to selected li element
+        // 5. Add opacity "1" to selected li element
+        try {
+            content.getElementsByClassName(selectedLinksText)[0].classList.add('active');
+            content.getElementsByClassName(selectedLinksText)[0].style.opacity = 1;
+        } catch(e){
+            throw new Error('Missing content named "'+selectedLinksText+'"');
+        }          
+    }
+    
+    function init(){
+        const getMenuLinksList = document.getElementsByClassName('project-body-nav-list');
+        [].forEach.call(getMenuLinksList, el => {
+            [].forEach.call(el.children, el=>{
+                el.addEventListener('click', function(e) {
+                    ui.menu.navigation(e);
+                });
+            });
+        });
+    }
+    
+}());
 
 ui.utils = (function(){
     

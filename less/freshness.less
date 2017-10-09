@@ -1,0 +1,38 @@
+.freshness {
+    position: absolute;
+    display: inline-block;
+    min-width: 50px;
+    bottom: 0;
+    margin-left: 1em;
+    cursor: pointer;
+    text-align: center;
+    
+    .gauge {
+        position: relative;
+        display: block;
+        height: 25px;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    
+    .gauge-needle {
+        transition: .25s ease-in-out;
+    }
+    
+    span {
+        font-size: .75em;
+    }
+}
+
+.project-dark .freshness {
+    
+    .gauge-needle {
+        fill: #FFFFFF !important;
+    }
+    
+    span {
+        color: #FFFFFF;
+    }
+    
+}
