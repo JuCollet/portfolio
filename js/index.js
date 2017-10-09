@@ -7,10 +7,12 @@ const totalJourneyLength = Math.round((Date.parse("October 1, 2016") - Date.now(
 const start = function(){
     const triggers = ui.animation.listTriggers();
     ui.menu.init();
+    ui.navigation.arrowInit();
     window.addEventListener('scroll', function(e) {
         ui.animation.request(triggers);
     });
 };
+
 
 ui.animation = (function(){
     
@@ -108,7 +110,7 @@ ui.menu = (function(){
     function navigation(e){
         const selectedLinks = e.currentTarget;
         const selectedLinksText = selectedLinks.innerText;
-        const content = selectedLinks.parentNode.parentElement.parentElement.getElementsByClassName("project-body-content-list")[0]
+        const content = selectedLinks.parentNode.parentElement.parentElement.getElementsByClassName("project-body-content-list")[0];
         const contentList = content.getElementsByTagName('li');
         
         // 1. Remove "active" class of all siblings links
@@ -146,6 +148,57 @@ ui.menu = (function(){
                 });
             });
         });
+    }
+    
+}());
+
+ui.navigation = (function(){
+    
+    return {
+        arrowInit
+    };
+    
+    function arrowInit(){
+        const arrows = document.getElementsByClassName('qa-arrow');
+        const quickappsListElement = document.getElementsByClassName('quick-apps-list')[0];
+        const offset = 100;
+        
+        // 1. Select all arrows & add eventListener
+        [].forEach.call(arrows, el => {
+            el.addEventListener('click', el => {
+                
+                // 2. Onclick scroll into quick-apps-right to left or right
+                if(el.currentTarget.getAttribute('id') === "quick-apps-left") {
+                    quickappsListElement.scrollLeft += offset;
+                } else {
+                    quickappsListElement.scrollLeft -= offset;
+                }
+                
+                _disableArrow(quickappsListElement, document.getElementById('quick-apps-left'), document.getElementById('quick-apps-right'), offset);
+
+            });
+        });
+        
+        // 3. If scroll position = 0, then add arrow left opacity .5 and cursor = initial;
+        _disableArrow(quickappsListElement, document.getElementById('quick-apps-left'), document.getElementById('quick-apps-right'), offset);
+    }
+    
+    function _disableArrow(el, arrowLeft, arrowRight, offset){
+        if(el.scrollLeft === 0){
+            arrowRight.style.cursor = "initial";
+            arrowRight.style.opacity = ".1";
+        } else {
+            arrowRight.style.cursor = "pointer";
+            arrowRight.style.opacity = "1";
+        }
+        
+        if(el.offsetWidth > el.scrollLeft + offset){
+            arrowLeft.style.cursor = "pointer";
+            arrowLeft.style.opacity = "1";            
+        } else {
+            arrowLeft.style.cursor = "initial";
+            arrowLeft.style.opacity = ".1";            
+        }
     }
     
 }());
