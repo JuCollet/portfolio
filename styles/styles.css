@@ -476,6 +476,7 @@ template {
   position: relative;
   display: block;
   height: 25px;
+  width: 50px;
   left: 0;
   right: 0;
   margin: auto;
@@ -582,7 +583,7 @@ ul {
   transition: .25s;
 }
 .project-body-content-list li.active {
-  display: initial;
+  display: block;
 }
 .project-body-nav-mobile ul {
   margin-top: 2em;
@@ -651,6 +652,10 @@ ul {
   -webkit-transition: .25s;
   transition: .25s;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .quick-apps .project-body .qa-arrow:hover {
   opacity: 1;
@@ -662,6 +667,7 @@ ul {
   display: flex;
   height: 330px;
   margin-left: 4em;
+  overflow-y: hidden;
   overflow-x: auto;
 }
 .quick-apps .quick-apps-list ul {
