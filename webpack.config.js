@@ -28,11 +28,11 @@ module.exports = {
             }),
             test : /\.css$/,
         }, {
-            test : /\.(png|jpeg|jpg|gif|svg)$/,
+            test : /\.(png|jpeg|jpg|gif|svg|mp4)$/,
             use : [
                 {
                     loader : "url-loader",
-                    options : { limit : 20000, name : "./img/[hash].[ext]"}
+                    options : { limit : 100, name : "./img/[name].[ext]"}
                 },
                 "image-webpack-loader"
             ]

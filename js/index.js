@@ -1,6 +1,18 @@
 import normalize from "normalize.css";
 import styles from "../less/styles.less";
 
+import '../img/periscope_demo_short_ld.mp4';
+import '../img/periscope_iphone_mockup.png';
+import '../img/periscope_macbook_mockup.png';
+import '../img/periscope_macbook_screen.png';
+import '../img/qa_centpatates_app.png';
+import '../img/qa_paycheck_app.png';
+import '../img/qa_puzzle_app.png';
+import '../img/qode_iphone_mockup_1.png';
+import '../img/qode_iphone_mockup_2.png';
+import '../img/qode_pixel_mockup.png';
+
+
 const ui = {};
 const totalJourneyLength = Math.round((Date.parse("October 1, 2016") - Date.now())/86400000);
 const quickappsListElement = document.getElementsByClassName('quick-apps-list')[0];
