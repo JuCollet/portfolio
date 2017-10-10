@@ -42,7 +42,7 @@ ui.animation = (function(){
         let triggersArray = [];
         const allTags = document.getElementsByTagName('*');
         [].forEach.call(allTags, function(element){
-            if(element.dataset && element.dataset.trigger){
+            if(element.getAttribute("data-trigger")){
                 triggersArray.push(element);
             }
         });
@@ -53,8 +53,8 @@ ui.animation = (function(){
     // 4. if data animation is present & element on off, remove data-animation class from element if it has one    
     function _addOrRemoveAnimationClass(element, elementMustBeAdded){
         [].forEach.call(element.parentElement.parentElement.getElementsByTagName('*'), el=>{
-            if(el.dataset && el.dataset.animation || el.getAttribute("data-animation")){ // Added 'getAttribute' method for Safari issue;
-                el.dataset.animation.split(' ').forEach(function(animationName){
+            if(el.getAttribute("data-animation")){
+                el.getAttribute("data-animation").split(' ').forEach(function(animationName){
                     if(animationName === 'video'){
                         return _launchVideo(el, elementMustBeAdded);
                     }
@@ -73,13 +73,13 @@ ui.animation = (function(){
     }
     
     function _moveUpDown(element, isHappening){
-        if(isHappening && !element.dataset.move || element.dataset.move === 'undefined'){
-            element.dataset.move = window.scrollY;
+        if(isHappening && !element.getAttribute("data-move") || element.getAttribute("data-move") === 'undefined'){
+            element.setAttribute("data-move", window.scrollY);
         }
         if(isHappening){
-            element.style.transform = `translate(0px,${(element.dataset.move - window.scrollY)/10}px)`;
+            element.style.transform = `translate(0px,${(element.getAttribute("data-move") - window.scrollY)/10}px)`;
         } else {
-            element.dataset.move = undefined;
+            element.setAttribute("data-move", undefined);
         }
     }
     
@@ -93,14 +93,14 @@ ui.animation = (function(){
     
     function _updateGaugeNeedlePosition(el, isHappening){
         if(isHappening){
-            let freshness = Math.round((((Date.parse(el.dataset.date) - Date.now())/86400000)/totalJourneyLength)*180);
+            let freshness = Math.round((((Date.parse(el.getAttribute("data-date")) - Date.now())/86400000)/totalJourneyLength)*180);
             if(freshness-90 < 0){
             freshness = Math.abs(freshness-90) > 90 ? 90 : Math.abs(freshness-90);
             } else {
             freshness = -Math.abs(freshness-90) < - 90 ? -90 : -Math.abs(freshness-90);
             }
-            el.parentNode.getElementsByClassName('gauge-oldness')[0].innerText = Math.abs(Math.round((Date.parse(el.dataset.date) - Date.now())/86400000)) + " jours";
-            el.getElementsByClassName('gauge-needle')[0].setAttribute('transform', `rotate(${freshness} 50 50)`);
+            el.parentNode.getElementsByClassName('gauge-oldness')[0].innerText = Math.abs(Math.round((Date.parse(el.getAttribute("data-date")) - Date.now())/86400000)) + " jours";
+            el.getElementById('gauge-needle').setAttribute('transform', `rotate(${freshness} 50 50)`);
         }
     }
     
@@ -174,9 +174,9 @@ ui.navigation = (function(){
                 
                 // 2. Onclick scroll into quick-apps-right to left or right
                 if(el.currentTarget.getAttribute('id') === "quick-apps-left") {
-                    quickappsListElement.scrollLeft += quickAppScrollOffset;
-                } else {
                     quickappsListElement.scrollLeft -= quickAppScrollOffset;
+                } else {
+                    quickappsListElement.scrollLeft += quickAppScrollOffset;
                 }
                 
                 disableArrow(quickappsListElement, quickAppLeftArrow, quickAppRightArrow, quickAppScrollOffset);
@@ -195,19 +195,19 @@ ui.navigation = (function(){
         }
         
         if(el.scrollLeft === 0){
-            arrowRight.style.cursor = "initial";
-            arrowRight.style.opacity = ".1";
+            arrowLeft.style.cursor = "auto";
+            arrowLeft.style.opacity = ".1";
         } else {
-            arrowRight.style.cursor = "pointer";
-            arrowRight.style.opacity = "1";
+            arrowLeft.style.cursor = "pointer";
+            arrowLeft.style.opacity = "1";
         }
         
         if(el.offsetWidth > el.scrollLeft + quickAppScrollOffset && !isElementWiderThanWindow()){
-            arrowLeft.style.cursor = "pointer";
-            arrowLeft.style.opacity = "1";            
+            arrowRight.style.cursor = "pointer";
+            arrowRight.style.opacity = "1";            
         } else {
-            arrowLeft.style.cursor = "initial";
-            arrowLeft.style.opacity = ".1";            
+            arrowRight.style.cursor = "auto";
+            arrowRight.style.opacity = ".1";            
         }
     }
     

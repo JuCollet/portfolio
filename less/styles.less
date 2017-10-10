@@ -115,7 +115,7 @@ ul {
   }
   
   li.active {
-    display: initial;
+    display: block;
   }          
   
 } // end project-body-content-list
@@ -213,6 +213,7 @@ ul {
       opacity: .7;
       transition: .25s;
       cursor: pointer;
+      user-select: none;
     }
     
     .qa-arrow:hover {
@@ -226,6 +227,7 @@ ul {
     display: flex;
     height: 330px;
     margin-left: 4em;
+    overflow-y: hidden;
     overflow-x: auto;
     
     ul {
