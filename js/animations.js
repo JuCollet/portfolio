@@ -1,4 +1,6 @@
 import utils from "./utils";
+import elements from "./elements";
+import { landingTechno as technoContent } from "./content";
 
 const totalJourneyLength = Math.round((Date.parse("October 1, 2016") - Date.now())/86400000);
 
@@ -7,6 +9,7 @@ export default (function(){
     return {
         addActiveClass, // Add active class to provided element
         request, // Detect if any element wich request animation is visible;
+        landingTechno, // Animate the names of the technologies learned in landing page;
         listTriggers, // Return an array with every element that contain the data-trigger="true" attribute;
         removeEveryActiveClass, // Remove active class of everyElement
         setDisplayToBlock, // Set display of element to block
@@ -30,6 +33,56 @@ export default (function(){
                 _addOrRemoveAnimationClass(el, false);
            }
         });
+    }
+    
+    function landingTechno(){
+        const landingTechnoSpan = elements.landingTechno;
+        const technosLength = technoContent.length;
+        const intervals = 50;
+        let currentPosition = 0;
+
+        const removeChars = () => {
+            this.technoLength = landingTechnoSpan.innerText.length;
+            this.removeLetter = setInterval(() => {
+                landingTechnoSpan.innerText = landingTechnoSpan.innerText.slice(0,-1);
+                this.technoLength--;
+                if(this.technoLength === 0){
+                    clearInterval(this.removeLetter);
+                    addChars();
+                }
+            }, intervals);
+        };
+        
+        const addChars = () => {
+            if(currentPosition === technosLength){
+                currentPosition = 0;
+            }
+            this.technoLength = technoContent[currentPosition].length;
+            this.cursor = 0;
+            this.addCharsInterval = setInterval(()=>{
+                landingTechnoSpan.innerText = landingTechnoSpan.innerText + technoContent[currentPosition][this.cursor];
+                this.cursor++;
+                if(this.cursor === this.technoLength){
+                    clearInterval(this.addCharsInterval);
+                    currentPosition++;
+                    changeTechno();
+                }
+            }, intervals);
+        };
+
+        const changeTechno = () => {
+            setTimeout(()=>{
+                removeChars();
+            }, 3000);
+        };
+        
+        changeTechno();
+
+
+        // 1. Compte le nombre de caractères contenu;
+        // 2. Toutes les 3 secondes, retirer chaque caractère l'un après l'autre;
+        // 3. une fois que tous les caractères sont supprimés, ajouter chaque caractère du mot suivant;
+
     }
     
     function listTriggers(){

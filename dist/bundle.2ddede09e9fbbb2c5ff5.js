@@ -63,11 +63,30 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    landingTechno: document.getElementById('landing-techno'),
+    quickappsListElement: document.getElementsByClassName('quick-apps-list')[0],
+    quickAppLeftArrow: document.getElementById('quick-apps-left'),
+    quickAppRightArrow: document.getElementById('quick-apps-right'),
+    quickAppScrollOffset: 100,
+    touchMenuScrollOffset: 50
+};
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81,6 +100,12 @@ var _utils = __webpack_require__(2);
 
 var _utils2 = _interopRequireDefault(_utils);
 
+var _elements = __webpack_require__(0);
+
+var _elements2 = _interopRequireDefault(_elements);
+
+var _content = __webpack_require__(16);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var totalJourneyLength = Math.round((Date.parse("October 1, 2016") - Date.now()) / 86400000);
@@ -90,6 +115,7 @@ exports.default = function () {
     return {
         addActiveClass: addActiveClass, // Add active class to provided element
         request: request, // Detect if any element wich request animation is visible;
+        landingTechno: landingTechno, // Animate the names of the technologies learned in landing page;
         listTriggers: listTriggers, // Return an array with every element that contain the data-trigger="true" attribute;
         removeEveryActiveClass: removeEveryActiveClass, // Remove active class of everyElement
         setDisplayToBlock: setDisplayToBlock, // Set display of element to block
@@ -115,6 +141,56 @@ exports.default = function () {
                 _addOrRemoveAnimationClass(el, false);
             }
         });
+    }
+
+    function landingTechno() {
+        var _this = this;
+
+        var landingTechnoSpan = _elements2.default.landingTechno;
+        var technosLength = _content.landingTechno.length;
+        var intervals = 50;
+        var currentPosition = 0;
+
+        var removeChars = function removeChars() {
+            _this.technoLength = landingTechnoSpan.innerText.length;
+            _this.removeLetter = setInterval(function () {
+                landingTechnoSpan.innerText = landingTechnoSpan.innerText.slice(0, -1);
+                _this.technoLength--;
+                if (_this.technoLength === 0) {
+                    clearInterval(_this.removeLetter);
+                    addChars();
+                }
+            }, intervals);
+        };
+
+        var addChars = function addChars() {
+            if (currentPosition === technosLength) {
+                currentPosition = 0;
+            }
+            _this.technoLength = _content.landingTechno[currentPosition].length;
+            _this.cursor = 0;
+            _this.addCharsInterval = setInterval(function () {
+                landingTechnoSpan.innerText = landingTechnoSpan.innerText + _content.landingTechno[currentPosition][_this.cursor];
+                _this.cursor++;
+                if (_this.cursor === _this.technoLength) {
+                    clearInterval(_this.addCharsInterval);
+                    currentPosition++;
+                    changeTechno();
+                }
+            }, intervals);
+        };
+
+        var changeTechno = function changeTechno() {
+            setTimeout(function () {
+                removeChars();
+            }, 3000);
+        };
+
+        changeTechno();
+
+        // 1. Compte le nombre de caractères contenu;
+        // 2. Toutes les 3 secondes, retirer chaque caractère l'un après l'autre;
+        // 3. une fois que tous les caractères sont supprimés, ajouter chaque caractère du mot suivant;
     }
 
     function listTriggers() {
@@ -231,24 +307,6 @@ exports.default = function () {
 }();
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = {
-    quickappsListElement: document.getElementsByClassName('quick-apps-list')[0],
-    quickAppLeftArrow: document.getElementById('quick-apps-left'),
-    quickAppRightArrow: document.getElementById('quick-apps-right'),
-    quickAppScrollOffset: 100,
-    touchMenuScrollOffset: 50
-};
-
-/***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -312,11 +370,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _elements = __webpack_require__(1);
+var _elements = __webpack_require__(0);
 
 var _elements2 = _interopRequireDefault(_elements);
 
-var _animations = __webpack_require__(0);
+var _animations = __webpack_require__(1);
 
 var _animations2 = _interopRequireDefault(_animations);
 
@@ -559,6 +617,18 @@ module.exports = __webpack_require__.p + "./img/qode_pixel_mockup.png";
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var landingTechno = exports.landingTechno = ["AngularJS", "NodeJS", "ExpressJS", "ReactJS", "Webpack", "ES6", "Gulp", "Mongoose", "PassportJS", "GraphQL", "Javacript"];
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var _normalize = __webpack_require__(5);
 
 var _normalize2 = _interopRequireDefault(_normalize);
@@ -587,7 +657,7 @@ __webpack_require__(14);
 
 __webpack_require__(15);
 
-var _animations = __webpack_require__(0);
+var _animations = __webpack_require__(1);
 
 var _animations2 = _interopRequireDefault(_animations);
 
@@ -595,7 +665,7 @@ var _navigation = __webpack_require__(3);
 
 var _navigation2 = _interopRequireDefault(_navigation);
 
-var _elements = __webpack_require__(1);
+var _elements = __webpack_require__(0);
 
 var _elements2 = _interopRequireDefault(_elements);
 
@@ -605,6 +675,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     _navigation2.default.menuInit();
     _navigation2.default.arrowInit();
     _navigation2.default.TouchScrollInit();
+    _animations2.default.landingTechno();
     window.addEventListener('scroll', function (e) {
         _animations2.default.request(_animations2.default.listTriggers());
     });

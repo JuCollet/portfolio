@@ -1,0 +1,1 @@
+export const landingTechno = ["AngularJS","NodeJS","ExpressJS","ReactJS","Webpack","ES6", "Gulp", "Mongoose", "PassportJS", "GraphQL", "Javacript"];

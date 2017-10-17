@@ -20,6 +20,7 @@ import elements from "./elements";
     navigation.menuInit();
     navigation.arrowInit();
     navigation.TouchScrollInit();
+    animations.landingTechno();
     window.addEventListener('scroll', function(e) {
         animations.request(animations.listTriggers());
     });

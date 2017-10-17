@@ -68,7 +68,14 @@ ul {
   justify-content: center;
   height: 100%;
   padding-left: 10vw;
+}
+
+.project-body-narrow {
   width: 30vw;
+}
+
+.project-body-wide {
+    width: 50vw;
 }
 
 .project-body-box {
@@ -260,7 +267,7 @@ ul {
 
 @media (max-width:@screen-md-min){
   
-  .project-body {
+  .project-body-narrow {
     width: 40vw;
   }
   
@@ -287,8 +294,11 @@ ul {
   
   .project-body {
     padding-right: 10vw;
-    width: 80vw;
     text-align: center;
+  }
+  
+  .project-body-narrow, .project-body-wide {
+    width: 80vw;
   }
   
   .project-body-box {
@@ -397,6 +407,10 @@ ul {
 
 
 // STATES //
+
+.bkg-tomato {
+  background-color: tomato;
+}
 
 .fade {
   opacity: 1 !important;
