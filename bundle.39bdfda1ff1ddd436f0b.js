@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -78,6 +78,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
     landingTechno: document.getElementById('landing-techno'),
+    modal: document.getElementById('modal'),
+    modalContent: document.getElementById('modal-content'),
+    modalCloseButton: document.getElementById('nav-modal-close-btn'),
     quickappsListElement: document.getElementsByClassName('quick-apps-list')[0],
     quickAppLeftArrow: document.getElementById('quick-apps-left'),
     quickAppRightArrow: document.getElementById('quick-apps-right'),
@@ -104,7 +107,7 @@ var _elements = __webpack_require__(0);
 
 var _elements2 = _interopRequireDefault(_elements);
 
-var _content = __webpack_require__(16);
+var _content = __webpack_require__(18);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -148,7 +151,7 @@ exports.default = function () {
 
         var landingTechnoSpan = _elements2.default.landingTechno;
         var technosLength = _content.landingTechno.length;
-        var intervals = 50;
+        var intervals = 75;
         var currentPosition = 0;
 
         var removeChars = function removeChars() {
@@ -183,14 +186,10 @@ exports.default = function () {
         var changeTechno = function changeTechno() {
             setTimeout(function () {
                 removeChars();
-            }, 3000);
+            }, 3500);
         };
 
         changeTechno();
-
-        // 1. Compte le nombre de caractères contenu;
-        // 2. Toutes les 3 secondes, retirer chaque caractère l'un après l'autre;
-        // 3. une fois que tous les caractères sont supprimés, ajouter chaque caractère du mot suivant;
     }
 
     function listTriggers() {
@@ -374,6 +373,52 @@ var _elements = __webpack_require__(0);
 
 var _elements2 = _interopRequireDefault(_elements);
 
+var _modalFreshgauge = __webpack_require__(20);
+
+var _modalFreshgauge2 = _interopRequireDefault(_modalFreshgauge);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+
+    return {
+        closeModal: closeModal,
+        modalInit: modalInit
+    };
+
+    function closeModal() {
+        _elements2.default.modal.style.transform = "translateY(100vh)";
+        setTimeout(function () {
+            while (_elements2.default.modalContent.firstChild) {
+                _elements2.default.modalContent.removeChild(_elements2.default.modalContent.firstChild);
+            }
+            _elements2.default.modalContent.style.display = "none";
+        }, 250);
+    }
+
+    function modalInit() {
+        _elements2.default.modalContent.innerHTML = _modalFreshgauge2.default;
+        _elements2.default.modalCloseButton.addEventListener('click', function () {
+            closeModal();
+        });
+    }
+}();
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _elements = __webpack_require__(0);
+
+var _elements2 = _interopRequireDefault(_elements);
+
 var _animations = __webpack_require__(1);
 
 var _animations2 = _interopRequireDefault(_animations);
@@ -539,12 +584,6 @@ exports.default = function () {
 }();
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
@@ -552,66 +591,78 @@ exports.default = function () {
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "./img/periscope_demo_short_ld.mp4";
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/periscope_iphone_mockup.png";
+module.exports = __webpack_require__.p + "./img/nav-modal-close.svg";
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/periscope_macbook_mockup.png";
+module.exports = __webpack_require__.p + "./img/periscope_demo_short_ld.mp4";
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/periscope_macbook_screen.png";
+module.exports = __webpack_require__.p + "./img/periscope_iphone_mockup.png";
 
 /***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qa_centpatates_app.png";
+module.exports = __webpack_require__.p + "./img/periscope_macbook_mockup.png";
 
 /***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qa_paycheck_app.png";
+module.exports = __webpack_require__.p + "./img/periscope_macbook_screen.png";
 
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qa_puzzle_app.png";
+module.exports = __webpack_require__.p + "./img/qa_centpatates_app.png";
 
 /***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qode_iphone_mockup_1.png";
+module.exports = __webpack_require__.p + "./img/qa_paycheck_app.png";
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qode_iphone_mockup_2.png";
+module.exports = __webpack_require__.p + "./img/qa_puzzle_app.png";
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qode_pixel_mockup.png";
+module.exports = __webpack_require__.p + "./img/qode_iphone_mockup_1.png";
 
 /***/ }),
 /* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./img/qode_iphone_mockup_2.png";
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./img/qode_pixel_mockup.png";
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -623,21 +674,19 @@ Object.defineProperty(exports, "__esModule", {
 var landingTechno = exports.landingTechno = ["AngularJS", "NodeJS", "ExpressJS", "ReactJS", "Webpack", "ES6", "Gulp", "Mongoose", "PassportJS", "GraphQL", "Javacript"];
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _normalize = __webpack_require__(5);
+var _normalize = __webpack_require__(6);
 
 var _normalize2 = _interopRequireDefault(_normalize);
 
-var _styles = __webpack_require__(4);
+var _styles = __webpack_require__(5);
 
 var _styles2 = _interopRequireDefault(_styles);
-
-__webpack_require__(6);
 
 __webpack_require__(7);
 
@@ -657,11 +706,19 @@ __webpack_require__(14);
 
 __webpack_require__(15);
 
+__webpack_require__(16);
+
+__webpack_require__(17);
+
 var _animations = __webpack_require__(1);
 
 var _animations2 = _interopRequireDefault(_animations);
 
-var _navigation = __webpack_require__(3);
+var _modal = __webpack_require__(3);
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _navigation = __webpack_require__(4);
 
 var _navigation2 = _interopRequireDefault(_navigation);
 
@@ -672,6 +729,7 @@ var _elements2 = _interopRequireDefault(_elements);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (function () {
+    _modal2.default.modalInit();
     _navigation2.default.menuInit();
     _navigation2.default.arrowInit();
     _navigation2.default.TouchScrollInit();
@@ -683,6 +741,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
         _navigation2.default.disableArrow(_elements2.default.quickappsListElement, _elements2.default.quickAppLeftArrow, _elements2.default.quickAppRightArrow);
     });
 })();
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+module.exports = "<h1>Hello World !</h1>\n<p>Comment ça va ?</p>";
 
 /***/ })
 /******/ ]);
