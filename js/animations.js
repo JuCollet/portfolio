@@ -38,7 +38,7 @@ export default (function(){
     function landingTechno(){
         const landingTechnoSpan = elements.landingTechno;
         const technosLength = technoContent.length;
-        const intervals = 50;
+        const intervals = 75;
         let currentPosition = 0;
 
         const removeChars = () => {
@@ -73,15 +73,10 @@ export default (function(){
         const changeTechno = () => {
             setTimeout(()=>{
                 removeChars();
-            }, 3000);
+            }, 3500);
         };
         
         changeTechno();
-
-
-        // 1. Compte le nombre de caractères contenu;
-        // 2. Toutes les 3 secondes, retirer chaque caractère l'un après l'autre;
-        // 3. une fois que tous les caractères sont supprimés, ajouter chaque caractère du mot suivant;
 
     }
     

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>nav-modal-close</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="section-periscope" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="modal-freshgauge-lg" transform="translate(-34.000000, -34.000000)" stroke="#202020" stroke-width="2">
+            <g id="nav-modal-close" transform="translate(35.000000, 35.000000)">
+                <path d="M0.453803358,29.5461966 L29.5525094,0.44749059" id="Line"></path>
+                <path d="M0.453803358,0.44749059 L29.5525094,29.5461966" id="Line"></path>
+            </g>
+        </g>
+    </g>
+</svg>

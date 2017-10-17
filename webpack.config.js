@@ -36,6 +36,13 @@ module.exports = {
                 },
                 "image-webpack-loader"
             ]
+        }, {
+            test : /\.html$/,
+            use : [
+                {
+                    loader : "html-loader"
+                }
+            ]
         }
     ]
     },
