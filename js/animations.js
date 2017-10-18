@@ -15,7 +15,8 @@ export default (function(){
         setDisplayToBlock, // Set display of element to block
         setEveryDisplayToNone, // Set displau to none of every item   
         setEveryOpacityToZero, // Set opacity of every item to zero
-        setOpacityToOne // Set opacity of an element to one
+        setOpacityToOne, // Set opacity of an element to one
+        updateGaugeNeedlePosition // Update gauge needle position
     };
     
     function addActiveClass(element, delay = 0){
@@ -137,7 +138,7 @@ export default (function(){
                         return _launchVideo(el, elementMustBeAdded);
                     }
                     if(animationName === 'needle'){
-                        return _updateGaugeNeedlePosition(el, elementMustBeAdded);
+                        return updateGaugeNeedlePosition(el, elementMustBeAdded);
                     }                    
                     if(elementMustBeAdded ? !el.classList.contains(animationName) : el.classList.contains(animationName)){
                         elementMustBeAdded ? el.classList.add(animationName) : el.classList.remove(animationName);
@@ -169,7 +170,7 @@ export default (function(){
         }
     }
     
-    function _updateGaugeNeedlePosition(el, isHappening){
+    function updateGaugeNeedlePosition(el, isHappening){
         if(isHappening){
             let freshness = Math.round((((Date.parse(el.getAttribute("data-date")) - Date.now())/86400000)/totalJourneyLength)*180);
             if(freshness-90 < 0){

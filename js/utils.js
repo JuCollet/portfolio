@@ -2,6 +2,7 @@ export default (function(){
     
     return {
         getElementIndexInElementList,
+        todayDateToString,
         isVisible // Detect if an element is x % visible in viewport (element, int: 0-100);
     };
     
@@ -18,6 +19,13 @@ export default (function(){
             index,
             length : i
         };
+    }
+    
+    function todayDateToString(){
+        const dayNames = ["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"];
+        const monthNames = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+        const date = new Date();
+        return `${dayNames[date.getDay()]} ${date.getDate()} ${monthNames[date.getMonth()]}`;
     }
     
     // 1. detect if a trigger is (or half, entirely) on screen.

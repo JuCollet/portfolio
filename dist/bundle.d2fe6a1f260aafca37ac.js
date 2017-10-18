@@ -77,6 +77,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = {
+    freshness: document.getElementsByClassName('freshness'),
     landingTechno: document.getElementById('landing-techno'),
     modal: document.getElementById('modal'),
     modalContent: document.getElementById('modal-content'),
@@ -124,7 +125,8 @@ exports.default = function () {
         setDisplayToBlock: setDisplayToBlock, // Set display of element to block
         setEveryDisplayToNone: setEveryDisplayToNone, // Set displau to none of every item   
         setEveryOpacityToZero: setEveryOpacityToZero, // Set opacity of every item to zero
-        setOpacityToOne: setOpacityToOne // Set opacity of an element to one
+        setOpacityToOne: setOpacityToOne, // Set opacity of an element to one
+        updateGaugeNeedlePosition: updateGaugeNeedlePosition // Update gauge needle position
     };
 
     function addActiveClass(element) {
@@ -259,7 +261,7 @@ exports.default = function () {
                         return _launchVideo(el, elementMustBeAdded);
                     }
                     if (animationName === 'needle') {
-                        return _updateGaugeNeedlePosition(el, elementMustBeAdded);
+                        return updateGaugeNeedlePosition(el, elementMustBeAdded);
                     }
                     if (elementMustBeAdded ? !el.classList.contains(animationName) : el.classList.contains(animationName)) {
                         elementMustBeAdded ? el.classList.add(animationName) : el.classList.remove(animationName);
@@ -291,7 +293,7 @@ exports.default = function () {
         }
     }
 
-    function _updateGaugeNeedlePosition(el, isHappening) {
+    function updateGaugeNeedlePosition(el, isHappening) {
         if (isHappening) {
             var freshness = Math.round((Date.parse(el.getAttribute("data-date")) - Date.now()) / 86400000 / totalJourneyLength * 180);
             if (freshness - 90 < 0) {
@@ -320,6 +322,7 @@ exports.default = function () {
 
     return {
         getElementIndexInElementList: getElementIndexInElementList,
+        todayDateToString: todayDateToString,
         isVisible: isVisible // Detect if an element is x % visible in viewport (element, int: 0-100);
     };
 
@@ -336,6 +339,13 @@ exports.default = function () {
             index: index,
             length: i
         };
+    }
+
+    function todayDateToString() {
+        var dayNames = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
+        var monthNames = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+        var date = new Date();
+        return dayNames[date.getDay()] + " " + date.getDate() + " " + monthNames[date.getMonth()];
     }
 
     // 1. detect if a trigger is (or half, entirely) on screen.
@@ -377,17 +387,44 @@ var _modalFreshgauge = __webpack_require__(20);
 
 var _modalFreshgauge2 = _interopRequireDefault(_modalFreshgauge);
 
+var _modalQaCentpatates = __webpack_require__(21);
+
+var _modalQaCentpatates2 = _interopRequireDefault(_modalQaCentpatates);
+
+var _utils = __webpack_require__(2);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+var _animations = __webpack_require__(1);
+
+var _animations2 = _interopRequireDefault(_animations);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function () {
 
     return {
         closeModal: closeModal,
-        modalInit: modalInit
+        linksInit: linksInit,
+        modalInit: modalInit,
+        buildModal: buildModal
     };
 
+    function buildModal(nameOfModal) {
+        if (nameOfModal === "modalGauge") {
+            _elements2.default.modalContent.innerHTML = _modalFreshgauge2.default;
+            document.querySelector('#modal-today-date').innerHTML = _utils2.default.todayDateToString();
+        } else if (nameOfModal === "modalQaCP") {
+            _elements2.default.modalContent.innerHTML = _modalQaCentpatates2.default;
+            _animations2.default.updateGaugeNeedlePosition(document.querySelector('.modal-qa').querySelector('.gauge'), true);
+        } else {
+            return;
+        }
+        _showModal();
+    }
+
     function closeModal() {
-        _elements2.default.modal.style.transform = "translateY(100vh)";
+        _elements2.default.modal.style.top = "100vh";
         setTimeout(function () {
             while (_elements2.default.modalContent.firstChild) {
                 _elements2.default.modalContent.removeChild(_elements2.default.modalContent.firstChild);
@@ -396,11 +433,24 @@ exports.default = function () {
         }, 250);
     }
 
+    function linksInit() {
+        [].forEach.call(_elements2.default.freshness, function (el) {
+            el.addEventListener('click', function () {
+                buildModal('modalGauge');
+            });
+        });
+    }
+
     function modalInit() {
-        _elements2.default.modalContent.innerHTML = _modalFreshgauge2.default;
+        buildModal("modalQaCP");
         _elements2.default.modalCloseButton.addEventListener('click', function () {
             closeModal();
         });
+    }
+
+    function _showModal() {
+        _elements2.default.modalContent.style.display = "block";
+        _elements2.default.modal.style.top = "0";
     }
 }();
 
@@ -730,6 +780,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (function () {
     _modal2.default.modalInit();
+    _modal2.default.linksInit();
     _navigation2.default.menuInit();
     _navigation2.default.arrowInit();
     _navigation2.default.TouchScrollInit();
@@ -744,9 +795,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /***/ }),
 /* 20 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<h1>Hello World !</h1>\n<p>Comment ça va ?</p>";
+module.exports = "<div class=\"modal-center\">\n    <img src=\"" + __webpack_require__(23) + "\" width=\"200\"></img>\n    <h1>Fresh Gauge</h1>\n    <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>\n    <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id=\"modal-today-date\"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>\n</div>";
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = "<div class=\"modal-qa\">\n    <div class=\"modal-qa-left\">\n        <img class=\"qa-img\" src=\"" + __webpack_require__(22) + "\"></img>\n        <h1>Puzzle App</h1>\n        <p>Technologies utilisées, ijiji, ijijijde, iieijiejd, ijdiejije</p>\n        <hr class=\"mobile-only\">\n        <div class=\"qa-freshness desktop-only\">\n          <svg version=\"1.1\" class=\"gauge\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n          \t viewBox=\"0 0 100 60\" style=\"enable-background:new 0 0 100 70;\" xml:space=\"preserve\" data-date=\"September 3, 2017\" data-animation=\"needle\">\n            <path style=\"fill:#F5A623;\" d=\"M50,12.5c6.832,0,13.23,1.836,18.747,5.028l6.25-10.824C67.642,2.448,59.109,0,50,0\n            \tc-9.109,0-17.641,2.448-24.996,6.704l6.249,10.824C36.769,14.336,43.168,12.5,50,12.5z\"/>\n            <path style=\"fill:#FF3F00;\" d=\"M0,50h12.5c0-13.879,7.546-25.988,18.753-32.473L25.004,6.704C10.061,15.35,0,31.495,0,50z\"/>\n            <path style=\"fill:#4EE898;\" d=\"M87.5,50H100c0-18.505-10.061-34.65-25.003-43.296l-6.25,10.824C79.954,24.012,87.5,36.121,87.5,50z\"/>\n            <polygon id=\"gauge-needle\" style=\"fill:#3E3E3E;\" points=\"57.071,50 50,57.071 42.929,50 50,4.472\" transform=\"rotate(-90 50 50)\"/>\n          </svg>\n          <span class=\"gauge-oldness\">&nbsp;</span>\n        </div>    \n    </div>\n    <div class=\"modal-qa-right\">\n        <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>\n        <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id=\"modal-today-date\"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>\n    </div>\n</div>";
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./img/qa_puzzle_app.png";
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./img/static-gauge.svg";
 
 /***/ })
 /******/ ]);

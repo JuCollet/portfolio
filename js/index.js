@@ -20,6 +20,7 @@ import elements from "./elements";
 
 (function(){
     modal.modalInit();
+    modal.linksInit();
     navigation.menuInit();
     navigation.arrowInit();
     navigation.TouchScrollInit();

@@ -1,4 +1,5 @@
 export default {
+    freshness : document.getElementsByClassName('freshness'),
     landingTechno : document.getElementById('landing-techno'),
     modal : document.getElementById('modal'),
     modalContent : document.getElementById('modal-content'),
