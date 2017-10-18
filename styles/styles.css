@@ -975,6 +975,9 @@ ul {
   margin-bottom: 1em;
   width: 100%;
 }
+div#preload {
+  display: none;
+}
 .fade {
   opacity: 1 !important;
 }
