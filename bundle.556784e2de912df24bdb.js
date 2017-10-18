@@ -83,6 +83,7 @@ exports.default = {
     modalContent: document.getElementById('modal-content'),
     modalCloseButton: document.getElementById('nav-modal-close-btn'),
     quickappsListElement: document.getElementsByClassName('quick-apps-list')[0],
+    quickappsElements: document.querySelectorAll('.quick-apps-list li'),
     quickAppLeftArrow: document.getElementById('quick-apps-left'),
     quickAppRightArrow: document.getElementById('quick-apps-right'),
     quickAppScrollOffset: 100,
@@ -391,6 +392,14 @@ var _modalQaCentpatates = __webpack_require__(21);
 
 var _modalQaCentpatates2 = _interopRequireDefault(_modalQaCentpatates);
 
+var _modalQaPuzzleapp = __webpack_require__(23);
+
+var _modalQaPuzzleapp2 = _interopRequireDefault(_modalQaPuzzleapp);
+
+var _modalQaPaycheck = __webpack_require__(22);
+
+var _modalQaPaycheck2 = _interopRequireDefault(_modalQaPaycheck);
+
 var _utils = __webpack_require__(2);
 
 var _utils2 = _interopRequireDefault(_utils);
@@ -417,6 +426,12 @@ exports.default = function () {
         } else if (nameOfModal === "modalQaCP") {
             _elements2.default.modalContent.innerHTML = _modalQaCentpatates2.default;
             _animations2.default.updateGaugeNeedlePosition(document.querySelector('.modal-qa').querySelector('.gauge'), true);
+        } else if (nameOfModal === "modalQaPA") {
+            _elements2.default.modalContent.innerHTML = _modalQaPuzzleapp2.default;
+            _animations2.default.updateGaugeNeedlePosition(document.querySelector('.modal-qa').querySelector('.gauge'), true);
+        } else if (nameOfModal === "modalQaPC") {
+            _elements2.default.modalContent.innerHTML = _modalQaPaycheck2.default;
+            _animations2.default.updateGaugeNeedlePosition(document.querySelector('.modal-qa').querySelector('.gauge'), true);
         } else {
             return;
         }
@@ -439,10 +454,14 @@ exports.default = function () {
                 buildModal('modalGauge');
             });
         });
+        [].forEach.call(_elements2.default.quickappsElements, function (el) {
+            el.addEventListener('click', function () {
+                buildModal(el.getAttribute("data-modal"));
+            });
+        });
     }
 
     function modalInit() {
-        buildModal("modalQaCP");
         _elements2.default.modalCloseButton.addEventListener('click', function () {
             closeModal();
         });
@@ -797,22 +816,46 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"modal-center\">\n    <img src=\"" + __webpack_require__(23) + "\" width=\"200\"></img>\n    <h1>Fresh Gauge</h1>\n    <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>\n    <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id=\"modal-today-date\"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>\n</div>";
+module.exports = "<div class=\"modal-center\">\n    <img src=\"" + __webpack_require__(27) + "\" width=\"200\"></img>\n    <h1>Fresh Gauge</h1>\n    <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>\n    <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id=\"modal-today-date\"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>\n</div>";
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"modal-qa\">\n    <div class=\"modal-qa-left\">\n        <img class=\"qa-img\" src=\"" + __webpack_require__(22) + "\"></img>\n        <h1>Puzzle App</h1>\n        <p>Technologies utilisées, ijiji, ijijijde, iieijiejd, ijdiejije</p>\n        <hr class=\"mobile-only\">\n        <div class=\"qa-freshness desktop-only\">\n          <svg version=\"1.1\" class=\"gauge\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n          \t viewBox=\"0 0 100 60\" style=\"enable-background:new 0 0 100 70;\" xml:space=\"preserve\" data-date=\"September 3, 2017\" data-animation=\"needle\">\n            <path style=\"fill:#F5A623;\" d=\"M50,12.5c6.832,0,13.23,1.836,18.747,5.028l6.25-10.824C67.642,2.448,59.109,0,50,0\n            \tc-9.109,0-17.641,2.448-24.996,6.704l6.249,10.824C36.769,14.336,43.168,12.5,50,12.5z\"/>\n            <path style=\"fill:#FF3F00;\" d=\"M0,50h12.5c0-13.879,7.546-25.988,18.753-32.473L25.004,6.704C10.061,15.35,0,31.495,0,50z\"/>\n            <path style=\"fill:#4EE898;\" d=\"M87.5,50H100c0-18.505-10.061-34.65-25.003-43.296l-6.25,10.824C79.954,24.012,87.5,36.121,87.5,50z\"/>\n            <polygon id=\"gauge-needle\" style=\"fill:#3E3E3E;\" points=\"57.071,50 50,57.071 42.929,50 50,4.472\" transform=\"rotate(-90 50 50)\"/>\n          </svg>\n          <span class=\"gauge-oldness\">&nbsp;</span>\n        </div>    \n    </div>\n    <div class=\"modal-qa-right\">\n        <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>\n        <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id=\"modal-today-date\"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>\n    </div>\n</div>";
+module.exports = "<div class=\"modal-qa\">\n    <div class=\"modal-qa-left\">\n        <img class=\"qa-img\" src=\"" + __webpack_require__(24) + "\"></img>\n        <h1>Puzzle App</h1>\n        <p>Technologies utilisées, ijiji, ijijijde, iieijiejd, ijdiejije</p>\n        <hr class=\"mobile-only\">\n        <div class=\"qa-freshness desktop-only\">\n          <svg version=\"1.1\" class=\"gauge\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n          \t viewBox=\"0 0 100 60\" style=\"enable-background:new 0 0 100 70;\" xml:space=\"preserve\" data-date=\"June 2, 2017\" data-animation=\"needle\">\n            <path style=\"fill:#F5A623;\" d=\"M50,12.5c6.832,0,13.23,1.836,18.747,5.028l6.25-10.824C67.642,2.448,59.109,0,50,0\n            \tc-9.109,0-17.641,2.448-24.996,6.704l6.249,10.824C36.769,14.336,43.168,12.5,50,12.5z\"/>\n            <path style=\"fill:#FF3F00;\" d=\"M0,50h12.5c0-13.879,7.546-25.988,18.753-32.473L25.004,6.704C10.061,15.35,0,31.495,0,50z\"/>\n            <path style=\"fill:#4EE898;\" d=\"M87.5,50H100c0-18.505-10.061-34.65-25.003-43.296l-6.25,10.824C79.954,24.012,87.5,36.121,87.5,50z\"/>\n            <polygon id=\"gauge-needle\" style=\"fill:#3E3E3E;\" points=\"57.071,50 50,57.071 42.929,50 50,4.472\" transform=\"rotate(-90 50 50)\"/>\n          </svg>\n          <span class=\"gauge-oldness\">&nbsp;</span>\n        </div>    \n    </div>\n    <div class=\"modal-qa-right\">\n        <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>\n        <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id=\"modal-today-date\"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>\n    </div>\n</div>";
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qa_puzzle_app.png";
+module.exports = "<div class=\"modal-qa\">\n    <div class=\"modal-qa-left\">\n        <img class=\"qa-img\" src=\"" + __webpack_require__(25) + "\"></img>\n        <h1>Puzzle App</h1>\n        <p>Technologies utilisées, ijiji, ijijijde, iieijiejd, ijdiejije</p>\n        <hr class=\"mobile-only\">\n        <div class=\"qa-freshness desktop-only\">\n          <svg version=\"1.1\" class=\"gauge\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n          \t viewBox=\"0 0 100 60\" style=\"enable-background:new 0 0 100 70;\" xml:space=\"preserve\" data-date=\"June 15, 2017\" data-animation=\"needle\">\n            <path style=\"fill:#F5A623;\" d=\"M50,12.5c6.832,0,13.23,1.836,18.747,5.028l6.25-10.824C67.642,2.448,59.109,0,50,0\n            \tc-9.109,0-17.641,2.448-24.996,6.704l6.249,10.824C36.769,14.336,43.168,12.5,50,12.5z\"/>\n            <path style=\"fill:#FF3F00;\" d=\"M0,50h12.5c0-13.879,7.546-25.988,18.753-32.473L25.004,6.704C10.061,15.35,0,31.495,0,50z\"/>\n            <path style=\"fill:#4EE898;\" d=\"M87.5,50H100c0-18.505-10.061-34.65-25.003-43.296l-6.25,10.824C79.954,24.012,87.5,36.121,87.5,50z\"/>\n            <polygon id=\"gauge-needle\" style=\"fill:#3E3E3E;\" points=\"57.071,50 50,57.071 42.929,50 50,4.472\" transform=\"rotate(-90 50 50)\"/>\n          </svg>\n          <span class=\"gauge-oldness\">&nbsp;</span>\n        </div>    \n    </div>\n    <div class=\"modal-qa-right\">\n        <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>\n        <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id=\"modal-today-date\"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>\n    </div>\n</div>";
 
 /***/ }),
 /* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = "<div class=\"modal-qa\">\n    <div class=\"modal-qa-left\">\n        <img class=\"qa-img\" src=\"" + __webpack_require__(26) + "\"></img>\n        <h1>Puzzle App</h1>\n        <p>Technologies utilisées, ijiji, ijijijde, iieijiejd, ijdiejije</p>\n        <hr class=\"mobile-only\">\n        <div class=\"qa-freshness desktop-only\">\n          <svg version=\"1.1\" class=\"gauge\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n          \t viewBox=\"0 0 100 60\" style=\"enable-background:new 0 0 100 70;\" xml:space=\"preserve\" data-date=\"January 24, 2017\" data-animation=\"needle\">\n            <path style=\"fill:#F5A623;\" d=\"M50,12.5c6.832,0,13.23,1.836,18.747,5.028l6.25-10.824C67.642,2.448,59.109,0,50,0\n            \tc-9.109,0-17.641,2.448-24.996,6.704l6.249,10.824C36.769,14.336,43.168,12.5,50,12.5z\"/>\n            <path style=\"fill:#FF3F00;\" d=\"M0,50h12.5c0-13.879,7.546-25.988,18.753-32.473L25.004,6.704C10.061,15.35,0,31.495,0,50z\"/>\n            <path style=\"fill:#4EE898;\" d=\"M87.5,50H100c0-18.505-10.061-34.65-25.003-43.296l-6.25,10.824C79.954,24.012,87.5,36.121,87.5,50z\"/>\n            <polygon id=\"gauge-needle\" style=\"fill:#3E3E3E;\" points=\"57.071,50 50,57.071 42.929,50 50,4.472\" transform=\"rotate(-90 50 50)\"/>\n          </svg>\n          <span class=\"gauge-oldness\">&nbsp;</span>\n        </div>    \n    </div>\n    <div class=\"modal-qa-right\">\n        <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>\n        <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id=\"modal-today-date\"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>\n    </div>\n</div>";
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./img/qa_centpatates_app.png";
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./img/qa_paycheck_app.png";
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./img/qa_puzzle_app.png";
+
+/***/ }),
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "./img/static-gauge.svg";
