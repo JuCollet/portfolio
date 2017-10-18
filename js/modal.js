@@ -1,6 +1,9 @@
 import elements from "./elements";
 import modalGauge from "./modals/modal-freshgauge.html";
 import modalQaCP from "./modals/modal-qa-centpatates.html";
+import modalQaPA from "./modals/modal-qa-puzzleapp.html";
+import modalQaPC from "./modals/modal-qa-paycheck.html";
+
 import utils from "./utils";
 import animations from "./animations";
 
@@ -19,6 +22,12 @@ export default (function(){
             document.querySelector('#modal-today-date').innerHTML = utils.todayDateToString();
         } else if(nameOfModal === "modalQaCP") {
             elements.modalContent.innerHTML = modalQaCP;
+            animations.updateGaugeNeedlePosition(document.querySelector('.modal-qa').querySelector('.gauge'), true);
+        } else if(nameOfModal === "modalQaPA") {
+            elements.modalContent.innerHTML = modalQaPA;
+            animations.updateGaugeNeedlePosition(document.querySelector('.modal-qa').querySelector('.gauge'), true);
+        } else if(nameOfModal === "modalQaPC") {
+            elements.modalContent.innerHTML = modalQaPC;
             animations.updateGaugeNeedlePosition(document.querySelector('.modal-qa').querySelector('.gauge'), true);
         } else {
             return ;
@@ -42,10 +51,14 @@ export default (function(){
                 buildModal('modalGauge');
             });
         });
+        [].forEach.call(elements.quickappsElements, el => {
+            el.addEventListener('click', () => {
+                buildModal(el.getAttribute("data-modal"));
+            });
+        });
     }
     
     function modalInit(){
-        buildModal("modalQaCP");
         elements.modalCloseButton.addEventListener('click', () => {
             closeModal();
         });

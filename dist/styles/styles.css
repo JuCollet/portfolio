@@ -840,6 +840,7 @@ ul {
   display: inline-block;
   margin-right: 1.5em;
   text-align: center;
+  cursor: pointer;
 }
 .quick-apps .quick-apps-list li img {
   width: 225px;
@@ -849,6 +850,9 @@ ul {
   display: block;
   margin-top: .5em;
   font-weight: bold;
+}
+.quick-apps .quick-apps-list li:hover {
+  opacity: .7;
 }
 @media (max-width: 1024px) {
   .project-body-narrow {
