@@ -26,7 +26,6 @@ navigation.menuInit();
 navigation.arrowInit();
 navigation.TouchScrollInit();
 animations.landingTechno();
-animations.landingFlashes();
 window.addEventListener('scroll', function(e) {
     animations.request(animations.listTriggers());
 });
