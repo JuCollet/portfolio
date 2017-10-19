@@ -1,6 +1,8 @@
 export default {
     freshness : document.getElementsByClassName('freshness'),
     landingTechno : document.getElementById('landing-techno'),
+    landingTitle : document.querySelector('.project-body-title'),
+    landingArt : document.querySelector('#art-portrait'),
     modal : document.getElementById('modal'),
     modalContent : document.getElementById('modal-content'),
     modalCloseButton : document.getElementById('nav-modal-close-btn'),

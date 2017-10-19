@@ -10,6 +10,7 @@ export default (function(){
         addActiveClass, // Add active class to provided element
         request, // Detect if any element wich request animation is visible;
         landingTechno, // Animate the names of the technologies learned in landing page;
+        landingFlashes,
         listTriggers, // Return an array with every element that contain the data-trigger="true" attribute;
         removeEveryActiveClass, // Remove active class of everyElement
         setDisplayToBlock, // Set display of element to block
@@ -80,6 +81,32 @@ export default (function(){
         changeTechno();
 
     }
+    
+    function landingFlashes(){
+        const randomDelay = Math.round(Math.random()*10000+1);
+        const randomFlashesInterval = Math.round(Math.random()*100+1);
+        const randomFlashBrightness = Math.round(Math.random()*5+1);
+        let flashesCounter = Math.round(Math.random()*10+1);
+        let isBright = true;
+        
+        const flashes = setInterval(() => {
+            if(isBright) {
+                elements.landingTitle.style.opacity = `.${randomFlashBrightness}`;
+                elements.landingArt.style.opacity = `.${randomFlashBrightness}`;
+            } else {
+                elements.landingTitle.style.opacity = 1;
+                elements.landingArt.style.opacity = 1;
+            }
+            isBright = !isBright;
+            flashesCounter--;
+            if(flashesCounter === 0){
+                setTimeout(()=>{landingFlashes();}, randomDelay);
+                clearInterval(flashes);
+                elements.landingTitle.style.opacity = 1;
+                elements.landingArt.style.opacity = 1;
+            }
+        }, randomFlashesInterval);
+    }    
     
     function listTriggers(){
         let triggersArray = [];

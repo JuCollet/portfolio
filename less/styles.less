@@ -65,6 +65,7 @@ ul {
 
 .project-body {
   display: flex;
+  z-index: 50;
   flex-direction: column;
   justify-content: center;
   height: 100%;
@@ -409,6 +410,14 @@ ul {
 #art-periscope-iphone {
   margin-bottom: 1em;
   width: 100%;
+}
+
+#art-portrait {
+  position: absolute;
+  top: -10vh;
+  left: -15%;
+  height: 100vh;
+  transition: .1s;
 }
 
 div#preload {

@@ -12,23 +12,24 @@ import '../img/qa_puzzle_app.png';
 import '../img/qode_iphone_mockup_1.png';
 import '../img/qode_iphone_mockup_2.png';
 import '../img/qode_pixel_mockup.png';
+import '../img/portrait.jpg';
 
 import animations from "./animations";
 import modal from "./modal";
 import navigation from "./navigation";
 import elements from "./elements";
 
-(function(){
-    modal.modalInit();
-    modal.linksInit();
-    navigation.menuInit();
-    navigation.arrowInit();
-    navigation.TouchScrollInit();
-    animations.landingTechno();
-    window.addEventListener('scroll', function(e) {
-        animations.request(animations.listTriggers());
-    });
-    window.addEventListener('resize', function(){
-        navigation.disableArrow(elements.quickappsListElement, elements.quickAppLeftArrow, elements.quickAppRightArrow);
-    });
-}());
+
+modal.modalInit();
+modal.linksInit();
+navigation.menuInit();
+navigation.arrowInit();
+navigation.TouchScrollInit();
+animations.landingTechno();
+animations.landingFlashes();
+window.addEventListener('scroll', function(e) {
+    animations.request(animations.listTriggers());
+});
+window.addEventListener('resize', function(){
+    navigation.disableArrow(elements.quickappsListElement, elements.quickAppLeftArrow, elements.quickAppRightArrow);
+});
