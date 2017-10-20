@@ -1,8 +1,8 @@
 <div class="modal-qa">
     <div class="modal-qa-left">
         <img class="qa-img" src="img/qa_puzzle_app.png"></img>
-        <h1>Puzzle App</h1>
-        <p>Technologies utilisées, ijiji, ijijijde, iieijiejd, ijdiejije</p>
+        <h1>Puzzleduino</h1>
+        <p>Arduino, Javascript, SVG</p>
         <hr class="mobile-only">
         <div class="qa-freshness desktop-only">
           <svg version="1.1" class="gauge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -17,7 +17,13 @@
         </div>    
     </div>
     <div class="modal-qa-right">
-        <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>
-        <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id="modal-today-date"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>
+        <h3>Ma toute première application, développée pour la soirée de présentation de la nouvelle stratégie de l’organisation pour laquelle je travaille.</h3>
+        <p>Le fil rouge de la communication était la pièce de puzzle, qui symbolise l’importance de chaque personne pour le mouvement. C’est pourquoi une pièce de puzzle vierge a été jointe dans chaque invitation papier, que le visiteur pouvait déposer dans une urne à l’entrée de l’amphithéâtre le jour de l'événement. Dès que la pièce était insérée, une animation était déclenchée sur l’écran géant de la salle et une pièce virtuelle apparaissait pour révéler une nouvelle partie d’une image mystère.</p>
+        <p><b>Cette installation était composée de deux parties : une hardware et une software.</b></p>
+        <p><b>Pour la partie hardware,</b> j’ai utilisé une carte programmable Teensy++, sur laquelle était installé Teensyduino, un environnement permettant de faire fonctionner un programme Arduino. Ce dernier était assez simple, il simulait l’appui d’une touche de clavier dès que le capteur de proximité, soudé à la carte, provoquait une différence de tension dans le circuit.</p>
+        <p><b>Pour la partie Software,</b> il s’agissait d’un programme Javascript bien sûr, qui déclenchait une animation dès que la touche de clavier « m » était virtuellement pressée par la carte programmable, raccordée à l’ordinateur en USB. Au lancement du programme, toutes les pièces étaient générées aléatoirement en SVG via une fonction Javascript et recouvraient l’image mystère. En réalité, quand un visiteur ajoutait une pièce, il en retirait une qui cachait un morceau de l’image.</p>
+        <p>J’avais aussi intégré plusieurs fonctions pour dévoiler plus rapidement des pièces en cas de retards et laisser masquées les parties importantes de l’image jusqu’aux derniers moments.</p>
+        <p><b>Ce fut ma première utilisation concrète de Javascript, en janvier 2017.</b></p>
+        <p>Pour la tester, cliquez ci-dessous et appuyez sur « m » pour dévoiler une pièce, « s » ou « f » pour dévoiler automatiquement une pièce toutes les 3 ou 6 secondes, et « g » pour tout dévoiler d’un coup.</p>
     </div>
 </div>

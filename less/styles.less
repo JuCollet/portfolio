@@ -28,6 +28,12 @@ h1,h2,h3,h4,p {
   margin: 0;
 }
 
+h3 {
+  margin-bottom: 25px;
+  font-weight: 300;
+  font-size: 1.5em;
+}
+
 h1 {
   display: inline-block;
   font-family: 'Montserrat', sans-serif;
@@ -36,11 +42,16 @@ h1 {
 }
 
 p {
-  margin-bottom: 1.5em;  
+  margin-bottom: 25px;  
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
   font-size: 1.2rem;     
   line-height: 130%;
+  
+  b, strong {
+      font-weight: 600;
+  }
+  
 }
 
 ul {
@@ -299,6 +310,10 @@ ul {
     height: initial;
   }
   
+  .project-landing {
+    padding-bottom: 0;
+  }
+  
   .project-body {
     padding-right: 10vw;
     text-align: center;
@@ -417,7 +432,6 @@ ul {
   top: -10vh;
   left: -15%;
   height: 100vh;
-  transition: .1s;
 }
 
 div#preload {

@@ -79,8 +79,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
     freshness: document.getElementsByClassName('freshness'),
     landingTechno: document.getElementById('landing-techno'),
-    landingTitle: document.querySelector('.project-body-title'),
-    landingArt: document.querySelector('#art-portrait'),
     modal: document.getElementById('modal'),
     modalContent: document.getElementById('modal-content'),
     modalCloseButton: document.getElementById('nav-modal-close-btn'),
@@ -123,7 +121,6 @@ exports.default = function () {
         addActiveClass: addActiveClass, // Add active class to provided element
         request: request, // Detect if any element wich request animation is visible;
         landingTechno: landingTechno, // Animate the names of the technologies learned in landing page;
-        landingFlashes: landingFlashes,
         listTriggers: listTriggers, // Return an array with every element that contain the data-trigger="true" attribute;
         removeEveryActiveClass: removeEveryActiveClass, // Remove active class of everyElement
         setDisplayToBlock: setDisplayToBlock, // Set display of element to block
@@ -196,34 +193,6 @@ exports.default = function () {
         };
 
         changeTechno();
-    }
-
-    function landingFlashes() {
-        var randomDelay = Math.round(Math.random() * 10000 + 1);
-        var randomFlashesInterval = Math.round(Math.random() * 100 + 1);
-        var randomFlashBrightness = Math.round(Math.random() * 5 + 1);
-        var flashesCounter = Math.round(Math.random() * 10 + 1);
-        var isBright = true;
-
-        var flashes = setInterval(function () {
-            if (isBright) {
-                _elements2.default.landingTitle.style.opacity = "." + randomFlashBrightness;
-                _elements2.default.landingArt.style.opacity = "." + randomFlashBrightness;
-            } else {
-                _elements2.default.landingTitle.style.opacity = 1;
-                _elements2.default.landingArt.style.opacity = 1;
-            }
-            isBright = !isBright;
-            flashesCounter--;
-            if (flashesCounter === 0) {
-                setTimeout(function () {
-                    landingFlashes();
-                }, randomDelay);
-                clearInterval(flashes);
-                _elements2.default.landingTitle.style.opacity = 1;
-                _elements2.default.landingArt.style.opacity = 1;
-            }
-        }, randomFlashesInterval);
     }
 
     function listTriggers() {
@@ -842,7 +811,6 @@ _navigation2.default.menuInit();
 _navigation2.default.arrowInit();
 _navigation2.default.TouchScrollInit();
 _animations2.default.landingTechno();
-_animations2.default.landingFlashes();
 window.addEventListener('scroll', function (e) {
     _animations2.default.request(_animations2.default.listTriggers());
 });
@@ -872,7 +840,7 @@ module.exports = "<div class=\"modal-qa\">\n    <div class=\"modal-qa-left\">\n 
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"modal-qa\">\n    <div class=\"modal-qa-left\">\n        <img class=\"qa-img\" src=\"" + __webpack_require__(27) + "\"></img>\n        <h1>Puzzle App</h1>\n        <p>Technologies utilisées, ijiji, ijijijde, iieijiejd, ijdiejije</p>\n        <hr class=\"mobile-only\">\n        <div class=\"qa-freshness desktop-only\">\n          <svg version=\"1.1\" class=\"gauge\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n          \t viewBox=\"0 0 100 60\" style=\"enable-background:new 0 0 100 70;\" xml:space=\"preserve\" data-date=\"January 24, 2017\" data-animation=\"needle\">\n            <path style=\"fill:#F5A623;\" d=\"M50,12.5c6.832,0,13.23,1.836,18.747,5.028l6.25-10.824C67.642,2.448,59.109,0,50,0\n            \tc-9.109,0-17.641,2.448-24.996,6.704l6.249,10.824C36.769,14.336,43.168,12.5,50,12.5z\"/>\n            <path style=\"fill:#FF3F00;\" d=\"M0,50h12.5c0-13.879,7.546-25.988,18.753-32.473L25.004,6.704C10.061,15.35,0,31.495,0,50z\"/>\n            <path style=\"fill:#4EE898;\" d=\"M87.5,50H100c0-18.505-10.061-34.65-25.003-43.296l-6.25,10.824C79.954,24.012,87.5,36.121,87.5,50z\"/>\n            <polygon id=\"gauge-needle\" style=\"fill:#3E3E3E;\" points=\"57.071,50 50,57.071 42.929,50 50,4.472\" transform=\"rotate(-90 50 50)\"/>\n          </svg>\n          <span class=\"gauge-oldness\">&nbsp;</span>\n        </div>    \n    </div>\n    <div class=\"modal-qa-right\">\n        <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>\n        <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id=\"modal-today-date\"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>\n    </div>\n</div>";
+module.exports = "<div class=\"modal-qa\">\n    <div class=\"modal-qa-left\">\n        <img class=\"qa-img\" src=\"" + __webpack_require__(27) + "\"></img>\n        <h1>Puzzleduino</h1>\n        <p>Arduino, Javascript, SVG</p>\n        <hr class=\"mobile-only\">\n        <div class=\"qa-freshness desktop-only\">\n          <svg version=\"1.1\" class=\"gauge\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n          \t viewBox=\"0 0 100 60\" style=\"enable-background:new 0 0 100 70;\" xml:space=\"preserve\" data-date=\"January 24, 2017\" data-animation=\"needle\">\n            <path style=\"fill:#F5A623;\" d=\"M50,12.5c6.832,0,13.23,1.836,18.747,5.028l6.25-10.824C67.642,2.448,59.109,0,50,0\n            \tc-9.109,0-17.641,2.448-24.996,6.704l6.249,10.824C36.769,14.336,43.168,12.5,50,12.5z\"/>\n            <path style=\"fill:#FF3F00;\" d=\"M0,50h12.5c0-13.879,7.546-25.988,18.753-32.473L25.004,6.704C10.061,15.35,0,31.495,0,50z\"/>\n            <path style=\"fill:#4EE898;\" d=\"M87.5,50H100c0-18.505-10.061-34.65-25.003-43.296l-6.25,10.824C79.954,24.012,87.5,36.121,87.5,50z\"/>\n            <polygon id=\"gauge-needle\" style=\"fill:#3E3E3E;\" points=\"57.071,50 50,57.071 42.929,50 50,4.472\" transform=\"rotate(-90 50 50)\"/>\n          </svg>\n          <span class=\"gauge-oldness\">&nbsp;</span>\n        </div>    \n    </div>\n    <div class=\"modal-qa-right\">\n        <h3>Ma toute première application, développée pour la soirée de présentation de la nouvelle stratégie de l’organisation pour laquelle je travaille.</h3>\n        <p>Le fil rouge de la communication était la pièce de puzzle, qui symbolise l’importance de chaque personne pour le mouvement. C’est pourquoi une pièce de puzzle vierge a été jointe dans chaque invitation papier, que le visiteur pouvait déposer dans une urne à l’entrée de l’amphithéâtre le jour de l'événement. Dès que la pièce était insérée, une animation était déclenchée sur l’écran géant de la salle et une pièce virtuelle apparaissait pour révéler une nouvelle partie d’une image mystère.</p>\n        <p><b>Cette installation était composée de deux parties : une hardware et une software.</b></p>\n        <p><b>Pour la partie hardware,</b> j’ai utilisé une carte programmable Teensy++, sur laquelle était installé Teensyduino, un environnement permettant de faire fonctionner un programme Arduino. Ce dernier était assez simple, il simulait l’appui d’une touche de clavier dès que le capteur de proximité, soudé à la carte, provoquait une différence de tension dans le circuit.</p>\n        <p><b>Pour la partie Software,</b> il s’agissait d’un programme Javascript bien sûr, qui déclenchait une animation dès que la touche de clavier « m » était virtuellement pressée par la carte programmable, raccordée à l’ordinateur en USB. Au lancement du programme, toutes les pièces étaient générées aléatoirement en SVG via une fonction Javascript et recouvraient l’image mystère. En réalité, quand un visiteur ajoutait une pièce, il en retirait une qui cachait un morceau de l’image.</p>\n        <p>J’avais aussi intégré plusieurs fonctions pour dévoiler plus rapidement des pièces en cas de retards et laisser masquées les parties importantes de l’image jusqu’aux derniers moments.</p>\n        <p><b>Ce fut ma première utilisation concrète de Javascript, en janvier 2017.</b></p>\n        <p>Pour la tester, cliquez ci-dessous et appuyez sur « m » pour dévoiler une pièce, « s » ou « f » pour dévoiler automatiquement une pièce toutes les 3 ou 6 secondes, et « g » pour tout dévoiler d’un coup.</p>\n    </div>\n</div>";
 
 /***/ }),
 /* 25 */
