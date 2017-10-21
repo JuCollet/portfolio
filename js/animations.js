@@ -1,8 +1,7 @@
 import utils from "./utils";
 import elements from "./elements";
+import * as content from "./content";
 import { landingTechno as technoContent } from "./content";
-
-const totalJourneyLength = Math.round((Date.parse("October 1, 2016") - Date.now())/86400000);
 
 export default (function(){
     
@@ -74,7 +73,7 @@ export default (function(){
         const changeTechno = () => {
             setTimeout(()=>{
                 removeChars();
-            }, 3500);
+            }, 2500);
         };
         
         changeTechno();
@@ -172,7 +171,7 @@ export default (function(){
     
     function updateGaugeNeedlePosition(el, isHappening){
         if(isHappening){
-            let freshness = Math.round((((Date.parse(el.getAttribute("data-date")) - Date.now())/86400000)/totalJourneyLength)*180);
+            let freshness = Math.round((((Date.parse(el.getAttribute("data-date")) - Date.now())/86400000)/content.totalJourneyLength)*180);
             if(freshness-90 < 0){
             freshness = Math.abs(freshness-90) > 90 ? 90 : Math.abs(freshness-90);
             } else {

@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300);@import url(https://fonts.googleapis.com/css?family=Montserrat:700);/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,500);@import url(https://fonts.googleapis.com/css?family=Montserrat:700);/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
    ========================================================================== */
@@ -448,6 +448,7 @@ template {
 .btn {
   display: inline-block;
   border-radius: 3px;
+  font-weight: 500;
   cursor: pointer;
   color: white;
   -webkit-transition: .25s;
@@ -462,6 +463,20 @@ template {
 }
 .btn-green:hover {
   background-color: #21e27e;
+}
+.btn-red {
+  background-color: tomato;
+}
+.btn-red:hover {
+  background-color: #ff3814;
+}
+.btn-white {
+  color: #4EE898;
+  background-color: white;
+}
+.btn-white:hover {
+  -webkit-box-shadow: 0px 0px 7px 5px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 0px 7px 5px rgba(0, 0, 0, 0.05);
 }
 .freshness {
   position: absolute;
@@ -482,8 +497,8 @@ template {
   margin: auto;
 }
 .freshness #gauge-needle {
-  -webkit-transition: 3.5s ease-out;
-  transition: 3.5s ease-out;
+  -webkit-transition: 1s ease-out;
+  transition: 1s ease-out;
 }
 .freshness span {
   font-size: .75em;
@@ -571,6 +586,9 @@ template {
 .modal-qa .modal-qa-left h1 {
   margin-bottom: 15px;
 }
+.modal-qa .modal-qa-left .qa-small {
+  font-size: .8em;
+}
 .modal-qa .modal-qa-right {
   width: 70%;
   padding: 100px 100px 25px 25px;
@@ -579,8 +597,16 @@ template {
 .modal-qa .modal-qa-right p {
   font-size: 1em;
 }
+.modal-qa .modal-qa-right img {
+  display: block;
+  max-width: 100%;
+}
+.modal-qa .modal-qa-right .btn {
+  margin-bottom: 2em;
+}
 .modal-qa .qa-freshness {
   display: inline-block;
+  margin-bottom: 25px;
   padding: 8px 10px 7px 12px;
   border: 1px solid #1A1A1A;
   -webkit-box-align: center;
@@ -603,6 +629,16 @@ template {
   margin-top: .2em;
   margin-left: .5em;
   font-size: 1em;
+}
+.modal-qa .fa {
+  opacity: .5;
+  margin-right: .5em;
+  cursor: pointer;
+  -webkit-transition: .25s;
+  transition: .25s;
+}
+.modal-qa .fa:hover {
+  opacity: 1;
 }
 @media (max-width: 768px) {
   .modal-center {
@@ -637,7 +673,7 @@ template {
     margin-bottom: 25px;
     margin-left: 0;
     border-width: 1px 0px 0px 0px;
-    border-color: #9A9A9A;
+    border-color: #dedede;
     border-style: solid;
     width: 200px;
   }
@@ -655,6 +691,10 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Raleway', sans-serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
 }
 h1,
 h2,
@@ -690,6 +730,29 @@ ul {
   padding: 0;
   list-style: none;
 }
+.final {
+  padding: 10vh 10vw;
+}
+.final h1 {
+  margin-bottom: 25px;
+}
+.final li {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+.final-footer {
+  text-align: center;
+  background-color: #4EE898;
+  color: white;
+}
+.final-footer img {
+  margin-bottom: 25px;
+  width: 150px;
+  border-radius: 50%;
+}
+.final-footer h2 {
+  margin-bottom: 25px;
+}
 .mobile-only {
   display: none;
 }
@@ -716,6 +779,9 @@ ul {
   height: 100%;
   padding-left: 10vw;
 }
+.project-body-padding-right {
+  padding-right: 10vw;
+}
 .project-body-narrow {
   width: 30vw;
 }
@@ -728,6 +794,22 @@ ul {
 .project-body-title {
   position: relative;
   margin-bottom: 1.5em;
+}
+.project-body-title .fa {
+  margin-top: 1em;
+  margin-right: .6em;
+  font-size: 1.5em;
+  opacity: .4;
+  -webkit-transition: .25s;
+  transition: .25s;
+  cursor: pointer;
+}
+.project-body-title .fa-envelope-o {
+  margin-top: -2px;
+  font-size: 1.4em;
+}
+.project-body-title .fa:hover {
+  opacity: 1;
 }
 .project-body-nav ul {
   margin-bottom: 1em;
@@ -764,7 +846,7 @@ ul {
   display: inline-block;
   opacity: .2;
   border-radius: 50%;
-  margin-right: .75em;
+  margin-right: .5em;
   width: .75em;
   height: .75em;
 }
@@ -907,6 +989,16 @@ ul {
     margin-top: 1em;
     margin-bottom: 1em;
   }
+  .project-body-title .fa {
+    margin-top: 1.5em;
+    margin-right: .75em;
+    font-size: 1.5em;
+    opacity: .5;
+  }
+  .project-body-title .fa-envelope-o {
+    font-size: 1.4em;
+    margin-right: initial;
+  }
   .project-artwork {
     position: initial;
     padding-right: 10vw;
@@ -993,9 +1085,12 @@ ul {
 }
 #art-portrait {
   position: absolute;
+  opacity: 0;
   top: -10vh;
-  left: -15%;
+  left: -10%;
   height: 100vh;
+  -webkit-transition: 2.5s;
+  transition: 2.5s;
 }
 div#preload {
   display: none;

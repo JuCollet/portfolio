@@ -21,11 +21,15 @@ export default (function(){
         };
     }
     
-    function todayDateToString(){
-        const dayNames = ["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"];
+    function todayDateToString(full, day){
+        const dayNames = ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
         const monthNames = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
         const date = new Date();
-        return `${dayNames[date.getDay()]} ${date.getDate()} ${monthNames[date.getMonth()]}`;
+        if(full) {
+            return `${dayNames[date.getDay()]} ${date.getDate()} ${monthNames[date.getMonth()]}`;
+        } else if(day) {
+            return `${dayNames[date.getDay()]}`;
+        }
     }
     
     // 1. detect if a trigger is (or half, entirely) on screen.

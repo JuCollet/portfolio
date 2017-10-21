@@ -1,8 +1,8 @@
 <div class="modal-qa">
     <div class="modal-qa-left">
         <img class="qa-img" src="img/qa_paycheck_app.png"></img>
-        <h1>Puzzle App</h1>
-        <p>Technologies utilisées, ijiji, ijijijde, iieijiejd, ijdiejije</p>
+        <h1>Paycheck</h1>
+        <p>AngularJS, UIKit, Express, Pug, PDFKit</p>
         <hr class="mobile-only">
         <div class="qa-freshness desktop-only">
           <svg version="1.1" class="gauge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -14,10 +14,16 @@
             <polygon id="gauge-needle" style="fill:#3E3E3E;" points="57.071,50 50,57.071 42.929,50 50,4.472" transform="rotate(-90 50 50)"/>
           </svg>
           <span class="gauge-oldness">&nbsp;</span>
-        </div>    
+        </div>
+        <p>
+            <a href="https://github.com/JuCollet/PayCheck" target="_blank"><i class="fa fa-github"></i></a>
+        </p>        
     </div>
     <div class="modal-qa-right">
-        <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>
-        <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id="modal-today-date"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>
+        <h3>Un POC réalisé pour mon employeur actuel, pour démontrer la faisabilité d’une automatisation des procédures de commandes internes.</h3>
+        <p>Après qu’un employé a rempli un formulaire de commande, des mails étaient automatiquement envoyés aux diverses personnes devant valider la dépense.</p>
+        <p>Une fois que tous les validateurs ont validé la dépense, l’utilisateur était prévenu et pouvait télécharger un fichier PDF complété avec les informations de la commande et la signature scannée du validateur.</p>
+        <p>Ce POC m’a permis de tester PDFKit, une application NodeJS permettant de générer des PDFs grâce à Javascript.</p>
+        <p>Parallèlement, j’ai aussi pu me familiariser avec Pug (anciennement Jade), une application de templating HTML, qui me permettait de générer dynamiquement les fichiers HTML des E-Mails, qui étaient ensuite envoyés via l’API de SendGrid.</p>
     </div>
 </div>

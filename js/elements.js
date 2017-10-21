@@ -1,6 +1,10 @@
 export default {
+    dateDay : document.querySelectorAll('.dateDay-string'),
+    dateSpans : document.querySelectorAll('.date-string'),
     freshness : document.getElementsByClassName('freshness'),
+    journeyLength : document.querySelectorAll('.journeyLength-string'),
     landingTechno : document.getElementById('landing-techno'),
+    landingArt : document.getElementById('art-portrait'),
     modal : document.getElementById('modal'),
     modalContent : document.getElementById('modal-content'),
     modalCloseButton : document.getElementById('nav-modal-close-btn'),
@@ -9,5 +13,5 @@ export default {
     quickAppLeftArrow : document.getElementById('quick-apps-left'),
     quickAppRightArrow : document.getElementById('quick-apps-right'),
     quickAppScrollOffset : 100,
-    touchMenuScrollOffset : 50
+    touchMenuScrollOffset : 25
 };

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -77,8 +77,12 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = {
+    dateDay: document.querySelectorAll('.dateDay-string'),
+    dateSpans: document.querySelectorAll('.date-string'),
     freshness: document.getElementsByClassName('freshness'),
+    journeyLength: document.querySelectorAll('.journeyLength-string'),
     landingTechno: document.getElementById('landing-techno'),
+    landingArt: document.getElementById('art-portrait'),
     modal: document.getElementById('modal'),
     modalContent: document.getElementById('modal-content'),
     modalCloseButton: document.getElementById('nav-modal-close-btn'),
@@ -87,7 +91,7 @@ exports.default = {
     quickAppLeftArrow: document.getElementById('quick-apps-left'),
     quickAppRightArrow: document.getElementById('quick-apps-right'),
     quickAppScrollOffset: 100,
-    touchMenuScrollOffset: 50
+    touchMenuScrollOffset: 25
 };
 
 /***/ }),
@@ -101,7 +105,72 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _utils = __webpack_require__(2);
+exports.default = function () {
+
+    return {
+        getElementIndexInElementList: getElementIndexInElementList,
+        todayDateToString: todayDateToString,
+        isVisible: isVisible // Detect if an element is x % visible in viewport (element, int: 0-100);
+    };
+
+    function getElementIndexInElementList(elementList, element) {
+        var i = 0;
+        var index = 0;
+        [].forEach.call(elementList, function (el) {
+            if (el === element) {
+                index = i;
+            }
+            i++;
+        });
+        return {
+            index: index,
+            length: i
+        };
+    }
+
+    function todayDateToString(full, day) {
+        var dayNames = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
+        var monthNames = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+        var date = new Date();
+        if (full) {
+            return dayNames[date.getDay()] + " " + date.getDate() + " " + monthNames[date.getMonth()];
+        } else if (day) {
+            return "" + dayNames[date.getDay()];
+        }
+    }
+
+    // 1. detect if a trigger is (or half, entirely) on screen.
+    function isVisible(element, visibility) {
+
+        var visibilityOffset = void 0;
+        var elementTopPosition = element.getBoundingClientRect().top;
+
+        if (visibility && visibility <= 100 || visibility > 0) {
+            visibilityOffset = element.offsetHeight / 100 * visibility;
+        } else {
+            visibilityOffset = 0;
+        }
+
+        if (elementTopPosition <= window.innerHeight - visibilityOffset && elementTopPosition > 0 + (visibilityOffset - element.offsetHeight)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}();
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _utils = __webpack_require__(1);
 
 var _utils2 = _interopRequireDefault(_utils);
 
@@ -109,11 +178,13 @@ var _elements = __webpack_require__(0);
 
 var _elements2 = _interopRequireDefault(_elements);
 
-var _content = __webpack_require__(19);
+var _content = __webpack_require__(3);
+
+var content = _interopRequireWildcard(_content);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var totalJourneyLength = Math.round((Date.parse("October 1, 2016") - Date.now()) / 86400000);
 
 exports.default = function () {
 
@@ -189,7 +260,7 @@ exports.default = function () {
         var changeTechno = function changeTechno() {
             setTimeout(function () {
                 removeChars();
-            }, 3500);
+            }, 2500);
         };
 
         changeTechno();
@@ -296,7 +367,7 @@ exports.default = function () {
 
     function updateGaugeNeedlePosition(el, isHappening) {
         if (isHappening) {
-            var freshness = Math.round((Date.parse(el.getAttribute("data-date")) - Date.now()) / 86400000 / totalJourneyLength * 180);
+            var freshness = Math.round((Date.parse(el.getAttribute("data-date")) - Date.now()) / 86400000 / content.totalJourneyLength * 180);
             if (freshness - 90 < 0) {
                 freshness = Math.abs(freshness - 90) > 90 ? 90 : Math.abs(freshness - 90);
             } else {
@@ -309,68 +380,20 @@ exports.default = function () {
 }();
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-
-exports.default = function () {
-
-    return {
-        getElementIndexInElementList: getElementIndexInElementList,
-        todayDateToString: todayDateToString,
-        isVisible: isVisible // Detect if an element is x % visible in viewport (element, int: 0-100);
-    };
-
-    function getElementIndexInElementList(elementList, element) {
-        var i = 0;
-        var index = 0;
-        [].forEach.call(elementList, function (el) {
-            if (el === element) {
-                index = i;
-            }
-            i++;
-        });
-        return {
-            index: index,
-            length: i
-        };
-    }
-
-    function todayDateToString() {
-        var dayNames = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
-        var monthNames = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
-        var date = new Date();
-        return dayNames[date.getDay()] + " " + date.getDate() + " " + monthNames[date.getMonth()];
-    }
-
-    // 1. detect if a trigger is (or half, entirely) on screen.
-    function isVisible(element, visibility) {
-
-        var visibilityOffset = void 0;
-        var elementTopPosition = element.getBoundingClientRect().top;
-
-        if (visibility && visibility <= 100 || visibility > 0) {
-            visibilityOffset = element.offsetHeight / 100 * visibility;
-        } else {
-            visibilityOffset = 0;
-        }
-
-        if (elementTopPosition <= window.innerHeight - visibilityOffset && elementTopPosition > 0 + (visibilityOffset - element.offsetHeight)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}();
+var landingTechno = exports.landingTechno = ["AngularJS", "NodeJS", "ReactJS", "Webpack", "Redux", "ES6", "Gulp", "ExpressJS", "Mongoose", "PassportJS", "GraphQL", "Javacript"];
+var totalJourneyLength = exports.totalJourneyLength = Math.round((Date.parse("October 1, 2016") - Date.now()) / 86400000);
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -384,27 +407,27 @@ var _elements = __webpack_require__(0);
 
 var _elements2 = _interopRequireDefault(_elements);
 
-var _modalFreshgauge = __webpack_require__(21);
+var _modalFreshgauge = __webpack_require__(23);
 
 var _modalFreshgauge2 = _interopRequireDefault(_modalFreshgauge);
 
-var _modalQaCentpatates = __webpack_require__(22);
+var _modalQaCentpatates = __webpack_require__(24);
 
 var _modalQaCentpatates2 = _interopRequireDefault(_modalQaCentpatates);
 
-var _modalQaPuzzleapp = __webpack_require__(24);
+var _modalQaPuzzleapp = __webpack_require__(26);
 
 var _modalQaPuzzleapp2 = _interopRequireDefault(_modalQaPuzzleapp);
 
-var _modalQaPaycheck = __webpack_require__(23);
+var _modalQaPaycheck = __webpack_require__(25);
 
 var _modalQaPaycheck2 = _interopRequireDefault(_modalQaPaycheck);
 
-var _utils = __webpack_require__(2);
+var _utils = __webpack_require__(1);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _animations = __webpack_require__(1);
+var _animations = __webpack_require__(2);
 
 var _animations2 = _interopRequireDefault(_animations);
 
@@ -422,7 +445,7 @@ exports.default = function () {
     function buildModal(nameOfModal) {
         if (nameOfModal === "modalGauge") {
             _elements2.default.modalContent.innerHTML = _modalFreshgauge2.default;
-            document.querySelector('#modal-today-date').innerHTML = _utils2.default.todayDateToString();
+            document.querySelector('#modal-today-date').innerHTML = _utils2.default.todayDateToString(true);
         } else if (nameOfModal === "modalQaCP") {
             _elements2.default.modalContent.innerHTML = _modalQaCentpatates2.default;
             _animations2.default.updateGaugeNeedlePosition(document.querySelector('.modal-qa').querySelector('.gauge'), true);
@@ -474,7 +497,7 @@ exports.default = function () {
 }();
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -488,11 +511,11 @@ var _elements = __webpack_require__(0);
 
 var _elements2 = _interopRequireDefault(_elements);
 
-var _animations = __webpack_require__(1);
+var _animations = __webpack_require__(2);
 
 var _animations2 = _interopRequireDefault(_animations);
 
-var _utils = __webpack_require__(2);
+var _utils = __webpack_require__(1);
 
 var _utils2 = _interopRequireDefault(_utils);
 
@@ -603,7 +626,7 @@ exports.default = function () {
         // 1. Ajouter un touch event à tous les contenus
         [].forEach.call(contentList, function (el) {
             el.addEventListener('touchmove', function (e) {
-                e.preventDefault();
+                //e.preventDefault(); // Side-effect : block vertical scrolling :(
                 scrollRecord.push(e.targetTouches[0].clientX);
             });
             el.addEventListener('touchend', function (e) {
@@ -653,12 +676,6 @@ exports.default = function () {
 }();
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
@@ -666,104 +683,108 @@ exports.default = function () {
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "./img/nav-modal-close.svg";
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/periscope_demo_short_ld.mp4";
+module.exports = __webpack_require__.p + "./img/logo.png";
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/periscope_iphone_mockup.png";
+module.exports = __webpack_require__.p + "./img/nav-modal-close.svg";
 
 /***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/periscope_macbook_mockup.png";
+module.exports = __webpack_require__.p + "./img/periscope_demo_short_ld.mp4";
 
 /***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/periscope_macbook_screen.png";
+module.exports = __webpack_require__.p + "./img/periscope_iphone_mockup.png";
 
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/portrait.jpg";
+module.exports = __webpack_require__.p + "./img/periscope_macbook_mockup.png";
 
 /***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qa_centpatates_app.png";
+module.exports = __webpack_require__.p + "./img/periscope_macbook_screen.png";
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qa_paycheck_app.png";
+module.exports = __webpack_require__.p + "./img/portrait.jpg";
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qa_puzzle_app.png";
+module.exports = __webpack_require__.p + "./img/profileImg.jpeg";
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qode_iphone_mockup_1.png";
+module.exports = __webpack_require__.p + "./img/qa_centpatates_app.png";
 
 /***/ }),
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qode_iphone_mockup_2.png";
+module.exports = __webpack_require__.p + "./img/qa_paycheck_app.png";
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qode_pixel_mockup.png";
+module.exports = __webpack_require__.p + "./img/qa_puzzle_app.png";
 
 /***/ }),
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var landingTechno = exports.landingTechno = ["AngularJS", "NodeJS", "ExpressJS", "ReactJS", "Webpack", "ES6", "Gulp", "Mongoose", "PassportJS", "GraphQL", "Javacript"];
+module.exports = __webpack_require__.p + "./img/qode_iphone_mockup_1.png";
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "./img/qode_iphone_mockup_2.png";
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./img/qode_pixel_mockup.png";
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
-var _normalize = __webpack_require__(6);
+var _normalize = __webpack_require__(7);
 
 var _normalize2 = _interopRequireDefault(_normalize);
 
-var _styles = __webpack_require__(5);
+var _styles = __webpack_require__(6);
 
 var _styles2 = _interopRequireDefault(_styles);
-
-__webpack_require__(7);
 
 __webpack_require__(8);
 
@@ -773,9 +794,9 @@ __webpack_require__(10);
 
 __webpack_require__(11);
 
-__webpack_require__(13);
+__webpack_require__(12);
 
-__webpack_require__(14);
+__webpack_require__(13);
 
 __webpack_require__(15);
 
@@ -785,23 +806,35 @@ __webpack_require__(17);
 
 __webpack_require__(18);
 
-__webpack_require__(12);
+__webpack_require__(19);
 
-var _animations = __webpack_require__(1);
+__webpack_require__(20);
+
+__webpack_require__(21);
+
+__webpack_require__(14);
+
+var _animations = __webpack_require__(2);
 
 var _animations2 = _interopRequireDefault(_animations);
 
-var _modal = __webpack_require__(3);
+var _content = __webpack_require__(3);
+
+var _modal = __webpack_require__(4);
 
 var _modal2 = _interopRequireDefault(_modal);
 
-var _navigation = __webpack_require__(4);
+var _navigation = __webpack_require__(5);
 
 var _navigation2 = _interopRequireDefault(_navigation);
 
 var _elements = __webpack_require__(0);
 
 var _elements2 = _interopRequireDefault(_elements);
+
+var _utils = __webpack_require__(1);
+
+var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -811,6 +844,20 @@ _navigation2.default.menuInit();
 _navigation2.default.arrowInit();
 _navigation2.default.TouchScrollInit();
 _animations2.default.landingTechno();
+_animations2.default.setOpacityToOne(_elements2.default.landingArt);
+
+[].forEach.call(_elements2.default.dateSpans, function (el) {
+    el.innerHTML = _utils2.default.todayDateToString(true);
+});
+
+[].forEach.call(_elements2.default.journeyLength, function (el) {
+    el.innerHTML = Math.abs(_content.totalJourneyLength);
+});
+
+[].forEach.call(_elements2.default.dateDay, function (el) {
+    el.innerHTML = _utils2.default.todayDateToString(false, true);
+});
+
 window.addEventListener('scroll', function (e) {
     _animations2.default.request(_animations2.default.listTriggers());
 });
@@ -819,49 +866,61 @@ window.addEventListener('resize', function () {
 });
 
 /***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = "<div class=\"modal-center\">\n    <img src=\"" + __webpack_require__(28) + "\" width=\"200\"></img>\n    <h1>Fresh Gauge</h1>\n    <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>\n    <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id=\"modal-today-date\"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>\n</div>";
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = "<div class=\"modal-qa\">\n    <div class=\"modal-qa-left\">\n        <img class=\"qa-img\" src=\"" + __webpack_require__(25) + "\"></img>\n        <h1>Puzzle App</h1>\n        <p>Technologies utilisées, ijiji, ijijijde, iieijiejd, ijdiejije</p>\n        <hr class=\"mobile-only\">\n        <div class=\"qa-freshness desktop-only\">\n          <svg version=\"1.1\" class=\"gauge\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n          \t viewBox=\"0 0 100 60\" style=\"enable-background:new 0 0 100 70;\" xml:space=\"preserve\" data-date=\"June 2, 2017\" data-animation=\"needle\">\n            <path style=\"fill:#F5A623;\" d=\"M50,12.5c6.832,0,13.23,1.836,18.747,5.028l6.25-10.824C67.642,2.448,59.109,0,50,0\n            \tc-9.109,0-17.641,2.448-24.996,6.704l6.249,10.824C36.769,14.336,43.168,12.5,50,12.5z\"/>\n            <path style=\"fill:#FF3F00;\" d=\"M0,50h12.5c0-13.879,7.546-25.988,18.753-32.473L25.004,6.704C10.061,15.35,0,31.495,0,50z\"/>\n            <path style=\"fill:#4EE898;\" d=\"M87.5,50H100c0-18.505-10.061-34.65-25.003-43.296l-6.25,10.824C79.954,24.012,87.5,36.121,87.5,50z\"/>\n            <polygon id=\"gauge-needle\" style=\"fill:#3E3E3E;\" points=\"57.071,50 50,57.071 42.929,50 50,4.472\" transform=\"rotate(-90 50 50)\"/>\n          </svg>\n          <span class=\"gauge-oldness\">&nbsp;</span>\n        </div>    \n    </div>\n    <div class=\"modal-qa-right\">\n        <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>\n        <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id=\"modal-today-date\"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>\n    </div>\n</div>";
-
-/***/ }),
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"modal-qa\">\n    <div class=\"modal-qa-left\">\n        <img class=\"qa-img\" src=\"" + __webpack_require__(26) + "\"></img>\n        <h1>Puzzle App</h1>\n        <p>Technologies utilisées, ijiji, ijijijde, iieijiejd, ijdiejije</p>\n        <hr class=\"mobile-only\">\n        <div class=\"qa-freshness desktop-only\">\n          <svg version=\"1.1\" class=\"gauge\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n          \t viewBox=\"0 0 100 60\" style=\"enable-background:new 0 0 100 70;\" xml:space=\"preserve\" data-date=\"June 15, 2017\" data-animation=\"needle\">\n            <path style=\"fill:#F5A623;\" d=\"M50,12.5c6.832,0,13.23,1.836,18.747,5.028l6.25-10.824C67.642,2.448,59.109,0,50,0\n            \tc-9.109,0-17.641,2.448-24.996,6.704l6.249,10.824C36.769,14.336,43.168,12.5,50,12.5z\"/>\n            <path style=\"fill:#FF3F00;\" d=\"M0,50h12.5c0-13.879,7.546-25.988,18.753-32.473L25.004,6.704C10.061,15.35,0,31.495,0,50z\"/>\n            <path style=\"fill:#4EE898;\" d=\"M87.5,50H100c0-18.505-10.061-34.65-25.003-43.296l-6.25,10.824C79.954,24.012,87.5,36.121,87.5,50z\"/>\n            <polygon id=\"gauge-needle\" style=\"fill:#3E3E3E;\" points=\"57.071,50 50,57.071 42.929,50 50,4.472\" transform=\"rotate(-90 50 50)\"/>\n          </svg>\n          <span class=\"gauge-oldness\">&nbsp;</span>\n        </div>    \n    </div>\n    <div class=\"modal-qa-right\">\n        <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>\n        <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id=\"modal-today-date\"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>\n    </div>\n</div>";
+module.exports = "<div class=\"modal-center\">\n    <img src=\"" + __webpack_require__(32) + "\" width=\"200\"></img>\n    <h1>Fresh Gauge</h1>\n    <p>Cette jauge vous permet de savoir à quel moment dans mon parcours un projet a été réalisé, entre aujourd’hui et le 1er octobre 2016, jour de ma première rencontre avec Javascript. <3</p>\n    <p>Les projets dans la zone rouge ou orange ne sont probablement plus représentatifs de mon niveau de compétence de ce <span id=\"modal-today-date\"></span>, mais pourront éventuellement vous donner des indications sur ma courbe de progression.</p>\n</div>";
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"modal-qa\">\n    <div class=\"modal-qa-left\">\n        <img class=\"qa-img\" src=\"" + __webpack_require__(27) + "\"></img>\n        <h1>Puzzleduino</h1>\n        <p>Arduino, Javascript, SVG</p>\n        <hr class=\"mobile-only\">\n        <div class=\"qa-freshness desktop-only\">\n          <svg version=\"1.1\" class=\"gauge\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n          \t viewBox=\"0 0 100 60\" style=\"enable-background:new 0 0 100 70;\" xml:space=\"preserve\" data-date=\"January 24, 2017\" data-animation=\"needle\">\n            <path style=\"fill:#F5A623;\" d=\"M50,12.5c6.832,0,13.23,1.836,18.747,5.028l6.25-10.824C67.642,2.448,59.109,0,50,0\n            \tc-9.109,0-17.641,2.448-24.996,6.704l6.249,10.824C36.769,14.336,43.168,12.5,50,12.5z\"/>\n            <path style=\"fill:#FF3F00;\" d=\"M0,50h12.5c0-13.879,7.546-25.988,18.753-32.473L25.004,6.704C10.061,15.35,0,31.495,0,50z\"/>\n            <path style=\"fill:#4EE898;\" d=\"M87.5,50H100c0-18.505-10.061-34.65-25.003-43.296l-6.25,10.824C79.954,24.012,87.5,36.121,87.5,50z\"/>\n            <polygon id=\"gauge-needle\" style=\"fill:#3E3E3E;\" points=\"57.071,50 50,57.071 42.929,50 50,4.472\" transform=\"rotate(-90 50 50)\"/>\n          </svg>\n          <span class=\"gauge-oldness\">&nbsp;</span>\n        </div>    \n    </div>\n    <div class=\"modal-qa-right\">\n        <h3>Ma toute première application, développée pour la soirée de présentation de la nouvelle stratégie de l’organisation pour laquelle je travaille.</h3>\n        <p>Le fil rouge de la communication était la pièce de puzzle, qui symbolise l’importance de chaque personne pour le mouvement. C’est pourquoi une pièce de puzzle vierge a été jointe dans chaque invitation papier, que le visiteur pouvait déposer dans une urne à l’entrée de l’amphithéâtre le jour de l'événement. Dès que la pièce était insérée, une animation était déclenchée sur l’écran géant de la salle et une pièce virtuelle apparaissait pour révéler une nouvelle partie d’une image mystère.</p>\n        <p><b>Cette installation était composée de deux parties : une hardware et une software.</b></p>\n        <p><b>Pour la partie hardware,</b> j’ai utilisé une carte programmable Teensy++, sur laquelle était installé Teensyduino, un environnement permettant de faire fonctionner un programme Arduino. Ce dernier était assez simple, il simulait l’appui d’une touche de clavier dès que le capteur de proximité, soudé à la carte, provoquait une différence de tension dans le circuit.</p>\n        <p><b>Pour la partie Software,</b> il s’agissait d’un programme Javascript bien sûr, qui déclenchait une animation dès que la touche de clavier « m » était virtuellement pressée par la carte programmable, raccordée à l’ordinateur en USB. Au lancement du programme, toutes les pièces étaient générées aléatoirement en SVG via une fonction Javascript et recouvraient l’image mystère. En réalité, quand un visiteur ajoutait une pièce, il en retirait une qui cachait un morceau de l’image.</p>\n        <p>J’avais aussi intégré plusieurs fonctions pour dévoiler plus rapidement des pièces en cas de retards et laisser masquées les parties importantes de l’image jusqu’aux derniers moments.</p>\n        <p><b>Ce fut ma première utilisation concrète de Javascript, en janvier 2017.</b></p>\n        <p>Pour la tester, cliquez ci-dessous et appuyez sur « m » pour dévoiler une pièce, « s » ou « f » pour dévoiler automatiquement une pièce toutes les 3 ou 6 secondes, et « g » pour tout dévoiler d’un coup.</p>\n    </div>\n</div>";
+module.exports = "<div class=\"modal-qa\">\n    <div class=\"modal-qa-left\">\n        <img class=\"qa-img\" src=\"" + __webpack_require__(27) + "\"></img>\n        <h1>Cent Patates</h1>\n        <p>Javascript, DeviceMotion</p>\n        <hr class=\"mobile-only\">\n        <div class=\"qa-freshness desktop-only\">\n          <svg version=\"1.1\" class=\"gauge\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n          \t viewBox=\"0 0 100 60\" style=\"enable-background:new 0 0 100 70;\" xml:space=\"preserve\" data-date=\"June 2, 2017\" data-animation=\"needle\">\n            <path style=\"fill:#F5A623;\" d=\"M50,12.5c6.832,0,13.23,1.836,18.747,5.028l6.25-10.824C67.642,2.448,59.109,0,50,0\n            \tc-9.109,0-17.641,2.448-24.996,6.704l6.249,10.824C36.769,14.336,43.168,12.5,50,12.5z\"/>\n            <path style=\"fill:#FF3F00;\" d=\"M0,50h12.5c0-13.879,7.546-25.988,18.753-32.473L25.004,6.704C10.061,15.35,0,31.495,0,50z\"/>\n            <path style=\"fill:#4EE898;\" d=\"M87.5,50H100c0-18.505-10.061-34.65-25.003-43.296l-6.25,10.824C79.954,24.012,87.5,36.121,87.5,50z\"/>\n            <polygon id=\"gauge-needle\" style=\"fill:#3E3E3E;\" points=\"57.071,50 50,57.071 42.929,50 50,4.472\" transform=\"rotate(-90 50 50)\"/>\n          </svg>\n          <span class=\"gauge-oldness\">&nbsp;</span>\n        </div>\n        <p>\n            <a href=\"https://github.com/JuCollet/centpatates\" target=\"_blank\"><i class=\"fa fa-github\"></i></a>\n            <a href=\"https://centpatates.herokuapp.com\" target=\"_blank\" class=\"mobile-only\"><i class=\"fa fa-play-circle-o\"></i></a>\n        </p>\n        <p class=\"qa-small desktop-only\">Cette application ne peut malheureusement n'être testée que sur mobile.</p>\n    </div>\n    <div class=\"modal-qa-right\">\n        <h3>Une micro-application, réalisée pour tester les événements de mouvements sur mobile.</h3>\n        <p>Quand l’utilisateur secoue son téléphone portable, des chiffres sont aléatoirement générés pour remplir une grille Euromillions. Des animations sont aussi déclenchées pour afficher des illustrations de porte-bonheurs, qui se déplacent sur l’écran en fonction des mouvements de l’utilisateur (direction et vitesse).</p>\n        <img src=\"" + __webpack_require__(28) + "\"/>\n    </div>\n</div>";
 
 /***/ }),
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qa_centpatates_app.png";
+module.exports = "<div class=\"modal-qa\">\n    <div class=\"modal-qa-left\">\n        <img class=\"qa-img\" src=\"" + __webpack_require__(30) + "\"></img>\n        <h1>Paycheck</h1>\n        <p>AngularJS, UIKit, Express, Pug, PDFKit</p>\n        <hr class=\"mobile-only\">\n        <div class=\"qa-freshness desktop-only\">\n          <svg version=\"1.1\" class=\"gauge\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n          \t viewBox=\"0 0 100 60\" style=\"enable-background:new 0 0 100 70;\" xml:space=\"preserve\" data-date=\"June 15, 2017\" data-animation=\"needle\">\n            <path style=\"fill:#F5A623;\" d=\"M50,12.5c6.832,0,13.23,1.836,18.747,5.028l6.25-10.824C67.642,2.448,59.109,0,50,0\n            \tc-9.109,0-17.641,2.448-24.996,6.704l6.249,10.824C36.769,14.336,43.168,12.5,50,12.5z\"/>\n            <path style=\"fill:#FF3F00;\" d=\"M0,50h12.5c0-13.879,7.546-25.988,18.753-32.473L25.004,6.704C10.061,15.35,0,31.495,0,50z\"/>\n            <path style=\"fill:#4EE898;\" d=\"M87.5,50H100c0-18.505-10.061-34.65-25.003-43.296l-6.25,10.824C79.954,24.012,87.5,36.121,87.5,50z\"/>\n            <polygon id=\"gauge-needle\" style=\"fill:#3E3E3E;\" points=\"57.071,50 50,57.071 42.929,50 50,4.472\" transform=\"rotate(-90 50 50)\"/>\n          </svg>\n          <span class=\"gauge-oldness\">&nbsp;</span>\n        </div>\n        <p>\n            <a href=\"https://github.com/JuCollet/PayCheck\" target=\"_blank\"><i class=\"fa fa-github\"></i></a>\n        </p>        \n    </div>\n    <div class=\"modal-qa-right\">\n        <h3>Un POC réalisé pour mon employeur actuel, pour démontrer la faisabilité d’une automatisation des procédures de commandes internes.</h3>\n        <p>Après qu’un employé a rempli un formulaire de commande, des mails étaient automatiquement envoyés aux diverses personnes devant valider la dépense.</p>\n        <p>Une fois que tous les validateurs ont validé la dépense, l’utilisateur était prévenu et pouvait télécharger un fichier PDF complété avec les informations de la commande et la signature scannée du validateur.</p>\n        <p>Ce POC m’a permis de tester PDFKit, une application NodeJS permettant de générer des PDFs grâce à Javascript.</p>\n        <p>Parallèlement, j’ai aussi pu me familiariser avec Pug (anciennement Jade), une application de templating HTML, qui me permettait de générer dynamiquement les fichiers HTML des E-Mails, qui étaient ensuite envoyés via l’API de SendGrid.</p>\n    </div>\n</div>";
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qa_paycheck_app.png";
+module.exports = "<div class=\"modal-qa\">\n    <div class=\"modal-qa-left\">\n        <img class=\"qa-img\" src=\"" + __webpack_require__(31) + "\"></img>\n        <h1>Puzzleduino</h1>\n        <p>Arduino, Javascript, SVG</p>\n        <hr class=\"mobile-only\">\n        <div class=\"qa-freshness desktop-only\">\n          <svg version=\"1.1\" class=\"gauge\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n          \t viewBox=\"0 0 100 60\" style=\"enable-background:new 0 0 100 70;\" xml:space=\"preserve\" data-date=\"January 24, 2017\" data-animation=\"needle\">\n            <path style=\"fill:#F5A623;\" d=\"M50,12.5c6.832,0,13.23,1.836,18.747,5.028l6.25-10.824C67.642,2.448,59.109,0,50,0\n            \tc-9.109,0-17.641,2.448-24.996,6.704l6.249,10.824C36.769,14.336,43.168,12.5,50,12.5z\"/>\n            <path style=\"fill:#FF3F00;\" d=\"M0,50h12.5c0-13.879,7.546-25.988,18.753-32.473L25.004,6.704C10.061,15.35,0,31.495,0,50z\"/>\n            <path style=\"fill:#4EE898;\" d=\"M87.5,50H100c0-18.505-10.061-34.65-25.003-43.296l-6.25,10.824C79.954,24.012,87.5,36.121,87.5,50z\"/>\n            <polygon id=\"gauge-needle\" style=\"fill:#3E3E3E;\" points=\"57.071,50 50,57.071 42.929,50 50,4.472\" transform=\"rotate(-90 50 50)\"/>\n          </svg>\n          <span class=\"gauge-oldness\">&nbsp;</span>\n        </div>\n        <p>\n            <a href=\"https://github.com/JuCollet/puzzleApp\" target=\"_blank\"><i class=\"fa fa-github\"></i></a>\n            <a href=\"https://jucollet.github.io/puzzleApp\" target=\"_blank\" class=\"desktop-only\"><i class=\"fa fa-play-circle-o\"></i></a>\n        </p>\n        <p class=\"qa-small desktop-only\">Pour tester cette application, cliquez sur le bouton play ci-dessus et appuyez sur la touche « u » pour dévoiler une pièce.</p>\n    </div>\n    <div class=\"modal-qa-right\">\n        <h3>Ma toute première application, développée pour la soirée de présentation de la nouvelle stratégie de l’organisation pour laquelle je travaille aujourd'hui.</h3>\n        <p>Le fil rouge de la communication était la pièce de puzzle, qui symbolise l’importance de chaque personne pour le mouvement. C’est pourquoi une pièce de puzzle vierge a été jointe dans chaque invitation papier, que le visiteur pouvait déposer dans une urne à l’entrée de l’amphithéâtre le jour de l'événement. Dès que la pièce était insérée, une animation se déclenchait sur l’écran géant de la salle et une pièce virtuelle apparaissait pour révéler une nouvelle partie d’une image mystère.</p>\n        <p><b>Cette installation était composée de deux parties : une hardware et une software.</b></p>\n        <p><b>Pour la partie hardware,</b> j’ai utilisé une carte programmable Teensy++, sur laquelle était installé Teensyduino, un environnement permettant de faire fonctionner un programme Arduino. Ce dernier était assez simple, il simulait l’appui d’une touche de clavier dès que le capteur de proximité, soudé à la carte, provoquait une différence de tension dans le circuit.</p>\n        <p><b>Pour la partie Software,</b> il s’agissait d’un programme Javascript bien sûr, qui déclenchait une animation dès que la touche de clavier « m » était virtuellement pressée par la carte programmable, raccordée à l’ordinateur en USB. Au lancement du programme, toutes les pièces étaient générées aléatoirement en SVG via une fonction Javascript et recouvraient l’image mystère. En réalité, quand un visiteur ajoutait une pièce, il en retirait une qui cachait un morceau de l’image.</p>\n        <p>J’avais aussi intégré plusieurs fonctions pour dévoiler plus rapidement des pièces en cas de retards et laisser masquées les parties importantes de l’image jusqu’aux derniers moments.</p>\n        <p><b>Ce fut ma première utilisation concrète de Javascript, en janvier 2017.</b></p>\n        <a href=\"https://youtu.be/BP_CxxtWfjg\" target=\"_blank\"><div class=\"btn btn-big btn-red\"><i class=\"fa fa-youtube-play\" style=\"opacity:1;\"></i>&nbsp;Voir les derniers essais</div></a>\n        <img src=\"" + __webpack_require__(29) + "\"/>\n    </div>\n</div>";
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./img/qa_puzzle_app.png";
+module.exports = __webpack_require__.p + "./img/qa_centpatates_app.png";
 
 /***/ }),
 /* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./img/qa_cp_iphone.png";
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./img/qa_pa.jpg";
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./img/qa_paycheck_app.png";
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./img/qa_puzzle_app.png";
+
+/***/ }),
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "./img/static-gauge.svg";

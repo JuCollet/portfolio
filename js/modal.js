@@ -19,7 +19,7 @@ export default (function(){
     function buildModal(nameOfModal){
         if(nameOfModal === "modalGauge"){
             elements.modalContent.innerHTML = modalGauge;
-            document.querySelector('#modal-today-date').innerHTML = utils.todayDateToString();
+            document.querySelector('#modal-today-date').innerHTML = utils.todayDateToString(true);
         } else if(nameOfModal === "modalQaCP") {
             elements.modalContent.innerHTML = modalQaCP;
             animations.updateGaugeNeedlePosition(document.querySelector('.modal-qa').querySelector('.gauge'), true);

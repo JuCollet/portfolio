@@ -108,7 +108,7 @@ export default (function(){
         // 1. Ajouter un touch event à tous les contenus
         [].forEach.call(contentList, el => {
             el.addEventListener('touchmove', function(e){
-                e.preventDefault();
+                //e.preventDefault(); // Side-effect : block vertical scrolling :(
                 scrollRecord.push(e.targetTouches[0].clientX);
             });
             el.addEventListener('touchend', function(e){

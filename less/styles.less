@@ -2,7 +2,7 @@
 @import 'freshness';
 @import 'modal';
 
-@import url('https://fonts.googleapis.com/css?family=Raleway:300');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,500');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700');
 
 @screen-sm-min: 768px;
@@ -10,6 +10,7 @@
 @screen-lg-min: 1200px;
 
 @green: #4EE898;
+@orange: #EDAA2B;
 @fairlyBlack: #101010;
 @veryDarkGrey: #202020;
 
@@ -22,6 +23,11 @@ html, body {
   padding: 0;
   margin: 0;
   font-family: 'Raleway', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 h1,h2,h3,h4,p {
@@ -63,6 +69,37 @@ ul {
 
 // MODULES //
 
+.final {
+  padding: 10vh 10vw;
+  
+  h1 {
+    margin-bottom: 25px;
+  }
+  
+  li {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+  }
+
+}
+
+.final-footer {
+  text-align: center;
+  background-color: @green;
+  color: white;
+  
+  img {
+    margin-bottom: 25px;
+    width: 150px;
+    border-radius: 50%;
+  }
+  
+  h2 {
+    margin-bottom: 25px;
+  }
+  
+}
+
 .mobile-only {
   display: none;
 }
@@ -83,6 +120,11 @@ ul {
   padding-left: 10vw;
 }
 
+.project-body-padding-right {
+  padding-right: 10vw;
+}
+
+
 .project-body-narrow {
   width: 30vw;
 }
@@ -98,6 +140,25 @@ ul {
 .project-body-title {
   position: relative;
   margin-bottom: 1.5em;
+  
+  .fa {
+    margin-top: 1em;
+    margin-right: .6em;
+    font-size: 1.5em;
+    opacity: .4;
+    transition: .25s;
+    cursor: pointer;
+  }
+  
+  .fa-envelope-o {
+    margin-top: -2px;
+    font-size: 1.4em;
+  }
+  
+  .fa:hover {
+    opacity: 1;
+  }
+  
 }
 
 .project-body-nav {
@@ -151,7 +212,7 @@ ul {
       display: inline-block;
       opacity: .2;      
       border-radius: 50%;
-      margin-right: .75em;
+      margin-right: .5em;
       width: .75em;
       height: .75em;
     }
@@ -330,6 +391,20 @@ ul {
   .project-body-title {
     margin-top: 1em;
     margin-bottom: 1em;
+    
+    .fa {
+      margin-top: 1.5em;
+      margin-right: .75em;
+      font-size: 1.5em;
+      opacity: .5;
+    }
+    
+    .fa-envelope-o {
+      font-size: 1.4em;
+      margin-right: initial;
+    }    
+    
+    
   }  
   
   .project-artwork {
@@ -429,9 +504,11 @@ ul {
 
 #art-portrait {
   position: absolute;
+  opacity: 0;
   top: -10vh;
-  left: -15%;
+  left: -10%;
   height: 100vh;
+  transition: 2.5s;
 }
 
 div#preload {
