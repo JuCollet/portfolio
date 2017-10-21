@@ -3,13 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="img/logo.png" />
         <link rel="stylesheet" href="styles/styles.css" type="text/css">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <title>Julien Collet</title>
     <link href="styles/styles.css" rel="stylesheet"></head>
     <body>
-        <div id="preload">
-          <img src="img/static-gauge.svg" width="1"></img>
-        </div>
         <div id="modal">
           <img id="nav-modal-close-btn" src="img/nav-modal-close.svg"><img/>
           <div id="modal-content">
@@ -20,6 +19,9 @@
           <div class="project-body project-body-wide">
             <div class="project-body-title">
               <h1>Hello, je suis Julien, un apprenti développeur web, passionné par <span id="landing-techno">Javascript</span>.</h1>
+              <a href="https://github.com/JuCollet" target="_blank"><i class="fa fa-github"></i></a>
+              <a href="https://www.linkedin.com/in/colletjulien/" target="_blank"><i class="fa fa-linkedin"></i></a>
+              <a href="mailto:ju.collet@gmail.com"><i class="fa fa-envelope-o"></i></a>
             </div>
             <div class="project-body-content">
             </div>
@@ -28,6 +30,9 @@
             <img class="desktop-only" id="art-portrait" src="img/portrait.jpg"/>
           </div>
         </section>
+        <div id="preload">
+          <img src="img/static-gauge.svg" width="1"></img>
+        </div>        
         <section class="project project-dark project-tall">
           <div class="project-body project-body-narrow">
             <div class="project-body-box" data-trigger="true">
@@ -58,15 +63,15 @@
               <div class="project-body-content">
                 <ul class="project-body-content-list">
                   <li class="Présentation active">
-                    <p>Premier projet réalisé avec AngularJS, dans le cadre de la formation de 7 mois "Full stack web development" donnée par HKUST sur Coursera.</p>
-                    <div class="btn btn-big btn-green">Essayer</div>
+                    <p>Mon premier projet “full-stack”, réalisé en conclusion d'une formation de 7 mois donnée par HKUST sur Coursera.</p>
+                    <a href="http://www.qode.be" target="_blank"><div class="btn btn-big btn-green">Essayer</div></a>
                   </li>
                   <li class="Projet">
-                    <p>Cette application permet à l'utilisateur de créer une simple page de contenu accessible publiquement via un code de 5 caractères.</p>
+                    <p>Cette application permet à un utilisateur de créer une simple page de contenu accessible publiquement via un code de 5 caractères.</p>
                   </li>
                   <li class="Code">
-                    <p>Développée avec angularJS, elle est servie par un serveur Express (NodeJS) et utilise un base de donnée MongoDB.</p>
-                    <div class="btn btn-big btn-green">Voir le code</div>
+                    <p>Développée avec AngularJS, elle est servie par un serveur Express (NodeJS) et utilise une base de donnée NoSQL MongoDB.</p>
+                    <a href="https://github.com/JuCollet/Qode" target="_blank"><div class="btn btn-big btn-green"><i class="fa fa-github"></i>&nbsp;&nbsp;En savoir plus</div></a>
                   </li>
                 </ul>
               </div>
@@ -109,15 +114,15 @@
               <div class="project-body-content">
                 <ul class="project-body-content-list">
                   <li class="Présentation active">
-                    <p>Une photothèque développée avec React + Redux, réalisée comme exercice en parrallèle de cours donnés par rallycoding.com.</p>
-                    <div class="btn btn-big btn-green">Essayer</div>
+                    <p>Mon plus gros projet "full-stack", réalisé comme exercice à la suite de cours donnés par rallycoding.com.</p>
+                    <a href="https://periscope.herokuapp.com/signin/demo" target="_blank"><div class="btn btn-big btn-green">Essayer</div></a>
                   </li>
                   <li class="Projet">
-                    <p>Photothèque personnelle permettant de stocker 1Go de photos, de les partager facilement par email et de les rechercher par mots-clés.</p>
+                    <p>Il s'agit d'une application de photothèque permettant de stocker des images, de les partager par email et de les rechercher par mots-clés.</p>
                   </li>
                   <li class="Code">
-                    <p>Développée avec ReactJS, cette app utilise JWT & Passport pour l'authentification et diverses applications NodeJS pour le traitement des images.</p>
-                    <div class="btn btn-big btn-green">Voir le code</div>
+                    <p>Développée avec ReactJS+Redux, cette app utilise JWT & Passport pour l'authentification et diverses applications NodeJS pour le traitement des images.</p>
+                    <a href="https://github.com/JuCollet/periscope" target="_blank"><div class="btn btn-big btn-green"><i class="fa fa-github"></i>&nbsp;&nbsp;En savoir plus</div></a>
                   </li>
                 </ul>
               </div>
@@ -138,12 +143,12 @@
         <section class="quick-apps">
           <div class="project-body project-body-narrow">
             <div class="project-body-title">
-              <h1>Quick apps</h1>
+              <h1>Mini-projets</h1>
             </div>
             <div class="project-body-content">
               <ul>
                 <li>
-                  <p>Une photothèque développée grâce à React et Redux, permettant de partager facilement des images et de collaborer avec d’autres utilisateurs.</p>
+                  <p>Ces minis-projets (ou simples POCs) m'ont servis à expérimenter de nouvelles techniques ou technologies.</p>
                 </li>
               </ul>
               <svg version="1.1" class="desktop-only qa-arrow" id="quick-apps-left" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -177,22 +182,30 @@
             </ul>
           </div>
         </section>
-        <section class="project">
-          <div class="project-body">
-            <div class="project-body-title">
-              <h1>Hello !</h1>
-            </div>
-            <div class="project-body-content">
-              <ul>
-                <li>
-                  <p>Je suis Julien, passionné par le code depuis ma première rencontre avec Javascript en octobre 2016.</p>
-                </li>
-              </ul>
-              <div class="btn btn-big btn-green">Me rencontrer</div>      
-            </div>
-          </div>
-          <div class="project-artwork">
-          </div>
+        
+        <section class="final">
+          <h1>To be continued... :)</h1>
+          <h3>Ce <span class="date-string"></span>, j’aurai déjà passé <span class="journeyLength-string"></span> jours à apprendre, et à me familiariser avec HTML, CSS, Javascript, Bootstrap, AngularJS, ReactJS, Redux, Less, Gulp, NodeJS, ExpressJS, Ionic, Mongoose, Ajax, Webpack, Git, ES6, JWT, PassportJS,...</h3>              
+          <p>Après une première formation de 7 mois donnée par l'Université des Sciences et Technologies de Hong-Kong sur Coursera, j'ai passé de très nombreuses heures sur TeamTreehouse, CodeSchool, RallyCoding,... sur les documentations officielles, les blogs ou chaines YouTube d'autres passionnés.</p>
+          <p>Aujourd’hui, je sais développer une interface responsive en me souciant de la compatibilité avec les différents navigateurs, de ses performances et de sa sécurité. Je sais aussi développer une API REST back-end avec NodeJS, qui communique avec une base de donnée NoSQL MongoDB.</p>
+          <p>En avançant dans mon parcours, j’ai appris l’importance d’organiser mon travail en le divisant en 3 parties&nbsp;: recherches ergonomiques, design de l’interface (Sketch), puis implémentation. Pour l’implémentation, je m’inspire des méthodes Scrum et m’impose des Sprints contenant une liste de fonctionnalités à implémenter pour chacune de mes sessions de code.</p>
+          <p>Ce n’est bien sûr qu’un début et ce <span class="dateDay-string"></span> encore, je profite de mon temps libre pour progresser dans ma liste de techniques, technologies et projets, à apprendre ou à réaliser :</p>
+          <ol>
+            <li>Mocha & Chai (unit testing)</li>
+            <li>Mini-projet (ReactJS & unit testing)</li>
+            <li>GraphQL & React Server Side Rendering</li>
+            <li>Application front & back-end (ReactJS, SSR & GraphQL)</li>
+            <li>ReactNative</li>
+            <li>Mini-project (ReactNative)</li>
+            <li>Angular 4&nbsp;? SQL&nbsp;? C#/.Net&nbsp;? Golang&nbsp;? PHP&nbsp;?... </li>
+            <li>...</li>
+          </ol>
         </section>
-    <script type="text/javascript" src="bundle.bc50c7e8f7d646cd8878.js"></script></body>
+        
+        <section class="final final-footer">
+          <img src="img/profileImg.jpeg"/>
+          <h2>Envie d’en savoir plus sur moi&nbsp;? Un encouragement, un conseil, une remarque&nbsp;? Ou vous êtes une association et vous pensez que je pourrais vous aider&nbsp;?</h2>
+          <div class="btn btn-big btn-white">Contactez-moi !</div>
+        </section>        
+    <script type="text/javascript" src="bundle.d0cc1d060234b4192533.js"></script></body>
 </html>
