@@ -389,7 +389,7 @@ exports.default = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var landingTechno = exports.landingTechno = ["AngularJS", "NodeJS", "ReactJS", "Webpack", "Redux", "ES6", "Gulp", "ExpressJS", "Mongoose", "PassportJS", "GraphQL", "Javacript"];
+var landingTechno = exports.landingTechno = ["AngularJS", "NodeJS", "ReactJS", "Webpack", "Redux", "ES6", "Gulp", "ExpressJS", "Mongoose", "PassportJS", "GraphQL", "Javascript"];
 var totalJourneyLength = exports.totalJourneyLength = Math.round((Date.parse("October 1, 2016") - Date.now()) / 86400000);
 
 /***/ }),
