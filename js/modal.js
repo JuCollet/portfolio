@@ -36,6 +36,7 @@ export default (function(){
     }    
     
     function closeModal(){
+        elements.body.classList.remove("modal-open");        
         elements.modal.style.top = "100vh";
         setTimeout(()=>{
             while (elements.modalContent.firstChild) {
@@ -67,6 +68,7 @@ export default (function(){
     function _showModal(){
         elements.modalContent.style.display = "block";
         elements.modal.style.top = "0";
+        elements.body.classList.add("modal-open");
     }
     
 }());

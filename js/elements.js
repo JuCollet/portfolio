@@ -1,4 +1,5 @@
 export default {
+    body : document.querySelector('body'),
     dateDay : document.querySelectorAll('.dateDay-string'),
     dateSpans : document.querySelectorAll('.date-string'),
     freshness : document.getElementsByClassName('freshness'),

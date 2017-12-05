@@ -509,6 +509,9 @@ template {
 .project-dark .freshness span {
   color: #FFFFFF;
 }
+.modal-open {
+  overflow: hidden;
+}
 #modal {
   position: fixed;
   top: 100vh;
