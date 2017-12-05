@@ -1,2 +1,2 @@
 # Mon portfolio
-Un petit portfolio développé sans framework, entièrement en VanillaJS (erreur).
+Un petit portfolio développé sans framework, entièrement en VanillaJS.
