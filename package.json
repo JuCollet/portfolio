@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npm run clean && webpack --progress",
     "build:watch": "npm run clean && webpack --progress --watch",
+    "publish" : "git subtree push --prefix dist origin gh-pages",    
     "clean": "rimraf dist"
   },
   "repository": {
